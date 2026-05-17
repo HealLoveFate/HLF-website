@@ -1396,7 +1396,7 @@ Through shared practices of love, awareness, and transformation, this space is h
   </script>
 
   <!-- Background music -->
-  <audio id="bgMusic" src="https://archive.org/download/relaxing-music-with-the-sound-of-nature-bamboo-water-fountain/relaxing-bamboo-music-with-water-sounds-relaxing-music-for-deep-sleep.mp3" loop preload="none"></audio>
+  <audio id="bgMusic" src="https://archive.org/download/relaxing-music-with-the-sound-of-nature-bamboo-water-fountain/relaxing-bamboo-music-with-water-sounds-relaxing-music-for-deep-sleep.mp3" loop preload="auto" autoplay></audio>
 
   <!-- Music toggle button -->
   <button id="musicBtn" aria-label="Toggle music" style="
@@ -1438,12 +1438,20 @@ Through shared practices of love, awareness, and transformation, this space is h
       }).catch(() => {});
     }
 
-    /* Auto-start on first user interaction */
-    ['click','scroll','touchstart','keydown'].forEach(evt => {
-      document.addEventListener(evt, function onFirst() {
-        startMusic();
-        document.removeEventListener(evt, onFirst);
-      }, { once: true });
+    /* Try autoplay immediately */
+    audio.play().then(() => {
+      playing = true;
+      iconOn.style.display = 'block';
+      iconOff.style.display = 'none';
+      btn.style.background = 'rgba(42,24,14,0.92)';
+    }).catch(() => {
+      /* Browser blocked autoplay — wait for first interaction */
+      ['click','scroll','touchstart','keydown'].forEach(evt => {
+        document.addEventListener(evt, function onFirst() {
+          startMusic();
+          document.removeEventListener(evt, onFirst);
+        }, { once: true });
+      });
     });
 
     btn.addEventListener('click', async (e) => {
