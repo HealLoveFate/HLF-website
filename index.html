@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fate Love Heal 卡蘿家— Community Gathering</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Jost:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+TC:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --colorLight:    #FFF2EB;
+      --colorOffWhite: #FFF8F4;
+      --colorBorder:   #FFD6BA;
+      --colorDark:     #3a2010;
+      --colorAccent:   #D3AF37;
+      --colorSage:     #FFDCDC;
+      --colorMuted:    #9a7060;
+      --colorGold:     #D3AF37;
+      --colorLightGold:#FFE8CD;
+      --peach1:        #f7ddd0;
+      --peach2:        #e0aa80;
+      --easeSpring: cubic-bezier(0.45, 0.02, 0.09, 0.98);
+      --easeOut:    cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { width: 100%; margin: 0; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+      color: var(--colorDark);
+      background-color: var(--colorLight);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--colorLight);
+      border-bottom: 1px solid var(--colorBorder);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo img { width: 40px; height: 40px; object-fit: contain; }
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600; font-size: 1rem; color: var(--colorDark);
+      letter-spacing: -0.01em; line-height: 1.2;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8125rem; color: var(--colorDark); text-decoration: none;
+      opacity: 0.65; transition: opacity 0.15s ease;
+    }
+    .nav-links a:hover { opacity: 1; }
+
+    /* Buttons */
+    .btn {
+      display: inline-block; padding: 9px 20px; border-radius: 6px;
+      font-family: 'Jost', sans-serif; font-size: 0.8125rem; font-weight: 500;
+      cursor: pointer; text-decoration: none; border: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn:active { transform: scale(0.98); }
+    .btn-dark  { background: var(--colorLight); color: var(--colorDark); border: 1px solid var(--colorBorder); }
+    .btn-outline {
+      background: transparent; color: var(--colorDark);
+      border: 1px solid rgba(58,32,16,0.3);
+    }
+    .btn-outline:hover { border-color: var(--colorDark); opacity: 1; }
+    .btn-white  { background: #fff; color: var(--colorDark); }
+    .btn-accent { background: var(--colorAccent); color: #fff; }
+    .btn-lg     { padding: 12px 28px; font-size: 0.9375rem; }
+
+    /* Language Dropdown */
+    .lang-dropdown { position: relative; }
+    .lang-dropdown-btn { display: inline-flex; align-items: center; gap: 6px; }
+    .lang-dropdown-menu {
+      display: none; position: absolute; right: 0; top: calc(100% + 8px);
+      background: var(--colorOffWhite); border: 1px solid var(--colorBorder);
+      border-radius: 10px; padding: 6px; min-width: 152px; z-index: 200;
+      box-shadow: 0 8px 24px rgba(58,32,16,0.10);
+    }
+    .lang-dropdown-menu.open { display: block; }
+    .lang-dropdown-menu button {
+      display: block; width: 100%; text-align: left; padding: 9px 14px;
+      background: none; border: none; border-radius: 6px;
+      font-family: 'Jost', sans-serif; font-size: 0.875rem; color: var(--colorDark);
+      cursor: pointer; transition: background 0.15s;
+    }
+    .lang-dropdown-menu button:hover { background: rgba(58,32,16,0.06); }
+    .lang-dropdown-menu button.active { font-weight: 600; }
+
+    /* Section */
+    html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+    section {
+      padding: 60px 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+    section .container { width: 100%; }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: var(--colorDark);
+    }
+
+    /* Hero */
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: start;
+    }
+    @media (max-width: 768px) { .hero-grid { grid-template-columns: 1fr; } }
+
+    /* Accordion */
+    .accordion-item { border-top: 1px solid var(--colorBorder); }
+    .accordion-item:last-child { border-bottom: 1px solid var(--colorBorder); }
+    .accordion-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0; cursor: pointer; font-weight: 500; font-size: 0.9375rem;
+      user-select: none; font-family: 'Jost', sans-serif;
+    }
+    .accordion-icon {
+      width: 24px; height: 24px; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
+      transition: transform 0.3s var(--easeSpring);
+    }
+    .accordion-item.open .accordion-icon { transform: rotate(45deg); }
+    .accordion-content {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s var(--easeSpring);
+    }
+    .accordion-item.open .accordion-content { max-height: 400px; }
+    .accordion-body {
+      padding-bottom: 24px; color: var(--colorMuted); line-height: 1.7; font-size: 0.9375rem;
+    }
+
+    /* Pass / Membership cards */
+    .passes-bg { background: var(--colorDark); }
+    .pass-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 12px; padding: 16px;
+    }
+    .pass-card-highlight {
+      background: rgba(255,255,255,0.11);
+      border-color: rgba(255,255,255,0.25);
+    }
+
+    /* Speakers / Guides */
+    .speakers-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px;
+    }
+    .speaker-img-wrap {
+      width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden;
+      background: var(--colorOffWhite);
+    }
+    .speaker-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Tabs */
+    .tab-btn {
+      padding: 7px 16px; border-radius: 100px;
+      font-family: 'Jost', sans-serif; font-size: 0.8125rem; font-weight: 500;
+      cursor: pointer; border: 1px solid var(--colorBorder);
+      background: transparent; color: var(--colorDark);
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+    .tab-btn.active { background: var(--colorDark); color: #fff; border-color: var(--colorDark); }
+
+    /* Agenda */
+    .agenda-day { display: none; }
+    .agenda-day.active { display: block; }
+    .agenda-item {
+      display: grid; grid-template-columns: 110px 1fr;
+      gap: 24px; padding: 18px 0; border-top: 1px solid var(--colorBorder);
+    }
+    .agenda-item:last-child { border-bottom: 1px solid var(--colorBorder); }
+    .agenda-time { font-size: 0.8125rem; color: var(--colorMuted); padding-top: 1px; white-space: nowrap; }
+    .agenda-title { font-size: 0.9375rem; font-weight: 500; }
+    .agenda-sub   { font-size: 0.8125rem; color: var(--colorMuted); margin-top: 3px; }
+
+    /* Partners */
+    .sponsors-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px;
+    }
+    .sponsor-tile {
+      display: flex; align-items: center; justify-content: center;
+      height: 80px; border: 1px solid var(--colorBorder); border-radius: 8px; padding: 16px 24px;
+    }
+
+    /* Footer */
+    footer { background: var(--colorDark); color: #fff; }
+    footer a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.8125rem; transition: color 0.15s ease; }
+    footer a:hover { color: rgba(255,255,255,0.85); }
+
+    /* ── Hero gradient mesh orbs ── */
+    .grad-orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .orb-1 {
+      width: 720px; height: 720px;
+      background: radial-gradient(circle at 40% 40%, rgba(211,175,55,0.18) 0%, transparent 65%);
+      filter: blur(90px);
+      top: -30%; left: -12%;
+      animation: orbDrift1 60s ease-in-out infinite;
+    }
+    .orb-2 {
+      width: 480px; height: 480px;
+      background: radial-gradient(circle at 50% 50%, rgba(255,214,186,0.22) 0%, transparent 65%);
+      filter: blur(70px);
+      top: 5%; right: 0%;
+      animation: orbDrift2 48s ease-in-out infinite;
+    }
+    .orb-3 {
+      width: 560px; height: 560px;
+      background: radial-gradient(circle at 50% 50%, rgba(255,220,220,0.16) 0%, transparent 65%);
+      filter: blur(100px);
+      bottom: -20%; left: 25%;
+      animation: orbDrift3 70s ease-in-out infinite;
+    }
+    .orb-4 {
+      width: 260px; height: 260px;
+      background: radial-gradient(circle at 50% 50%, rgba(255,232,205,0.28) 0%, transparent 60%);
+      filter: blur(50px);
+      top: 30%; left: 38%;
+      animation: orbDrift4 42s ease-in-out infinite;
+    }
+    .orb-5 {
+      width: 340px; height: 340px;
+      background: radial-gradient(circle at 50% 50%, rgba(211,175,55,0.12) 0%, transparent 65%);
+      filter: blur(80px);
+      top: -5%; right: 30%;
+      animation: orbDrift5 55s ease-in-out infinite;
+    }
+    @keyframes orbDrift1 {
+      0%,100% { transform: translate(0px, 0px)   scale(1);    }
+      33%     { transform: translate(55px,-45px)  scale(1.06); }
+      66%     { transform: translate(-28px, 52px) scale(0.96); }
+    }
+    @keyframes orbDrift2 {
+      0%,100% { transform: translate(0px, 0px)   scale(1);    }
+      40%     { transform: translate(-48px, 35px) scale(1.08); }
+      72%     { transform: translate(36px,-24px)  scale(0.94); }
+    }
+    @keyframes orbDrift3 {
+      0%,100% { transform: translate(0px, 0px)   scale(1);    }
+      30%     { transform: translate(32px,-55px)  scale(1.04); }
+      65%     { transform: translate(-38px, 28px) scale(0.97); }
+    }
+    @keyframes orbDrift4 {
+      0%,100% { transform: translate(0px, 0px)   scale(1);    }
+      50%     { transform: translate(-22px,-32px) scale(1.12); }
+    }
+    @keyframes orbDrift5 {
+      0%,100% { transform: translate(0px, 0px)  scale(1);    }
+      45%     { transform: translate(40px, 28px) scale(0.92); }
+      80%     { transform: translate(-18px,-20px) scale(1.05); }
+    }
+    /* ── Metallic ripple ── */
+    .m-ring {
+      fill: none;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: metalRipple 7s var(--ring-delay, 0s) ease-out infinite;
+    }
+    @keyframes metalRipple {
+      0%   { transform: scale(0.06); opacity: 0.5; }
+      15%  { opacity: 0.35; }
+      75%  { opacity: 0.08; }
+      100% { transform: scale(3); opacity: 0; }
+    }
+
+    /* ── Healing card draw ── */
+    .heal-section-inner {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: 28px;
+    }
+    .card-row { display: flex; align-items: center; gap: 36px; }
+    .breath-dots { display:flex; gap:10px; justify-content:center; margin-top:10px; }
+    .dot { width:5px; height:5px; border-radius:50%; background:rgba(211,175,55,.3); transition:background .5s, transform .5s; }
+    .dot.active { background:#D3AF37; transform:scale(1.4); }
+    /* card */
+    .card-wrap { animation: fadeUp 1s .4s ease forwards; opacity:0; }
+    .card { width:298px; height:458px; border-radius:20px; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent; position:relative; overflow:hidden; }
+    .card-bg { position:absolute; inset:0; background:linear-gradient(150deg, var(--peach1) 0%, #f2cdb5 38%, #eabf9e 65%, var(--peach2) 100%); border-radius:20px; }
+    .deco { position:absolute; inset:0; z-index:4; pointer-events:none; width:100%; height:100%; }
+    /* cover */
+    .card-cover { position:absolute; inset:0; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; border-radius:20px; }
+    .cover-logo-wrap { position:relative; z-index:3; width:89px; height:89px; }
+    .cover-logo-wrap img { width:100%; height:100%; object-fit:contain; }
+    .cover-texts { display:flex; flex-direction:column; align-items:center; gap:4px; margin-top:5px; position:relative; z-index:3; }
+    .cover-brand { font-family:'Cormorant Garamond',serif; font-size:14px; letter-spacing:.45em; color:rgba(90,45,10,.55); text-transform:uppercase; }
+    .cover-hint { font-family:'Cormorant Garamond',serif; font-size:12px; letter-spacing:.38em; color:rgba(90,45,10,.3); text-transform:uppercase; }
+    /* result */
+    .card-result { position:absolute; inset:0; z-index:2; border-radius:20px; display:none; flex-direction:column; align-items:center; justify-content:space-between; padding:19px 16px 13px; }
+    .card-result.visible { display:flex; }
+    .rule { width:48px; height:1px; background:linear-gradient(90deg, transparent, var(--colorGold), transparent); position:relative; flex-shrink:0; }
+    .rule::after { content:'✦'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:var(--colorGold); font-size:5px; }
+    .msg { z-index:5; text-align:center; padding:0 4px; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; }
+    .msg-zh { font-family:'Noto Serif TC',serif; font-size:18px; font-weight:400; line-height:2.1; color:var(--colorDark); max-width:220px; word-break:keep-all; overflow-wrap:break-word; }
+    .msg-en { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14px; line-height:1.85; color:var(--colorMuted); max-width:220px; }
+    .card-foot { z-index:5; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; width:100%; gap:4px; }
+    .foot-logo { width:29px; height:29px; flex-shrink:0; }
+    .foot-logo img { width:100%; height:100%; object-fit:contain; }
+    .foot-rule { width:48px; height:1px; background:linear-gradient(90deg, transparent, #D3AF37, transparent); position:relative; }
+    .foot-rule::after { content:"✦"; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:#D3AF37; font-size:5px; }
+    .foot-text { font-family:'Cormorant Garamond',serif; font-size:12px; letter-spacing:.28em; color:rgba(90,45,10,.35); text-transform:uppercase; }
+    /* draw-again button */
+    .draw-again-btn {
+      display: none; flex-direction:column; align-items:center; gap:2px;
+      padding:10px 31px;
+      background: linear-gradient(135deg, #FFF2EB, #FFE8CD);
+      border: 1.5px solid #D3AF37;
+      color: #8a6010;
+      font-family: 'Cormorant Garamond', serif;
+      cursor: pointer;
+      border-radius: 40px;
+      box-shadow: 0 2px 14px rgba(211,175,55,.22);
+      transition: background .3s, box-shadow .3s, transform .15s;
+    }
+    .draw-again-btn.show { display:flex; }
+    .draw-again-btn:hover { background:linear-gradient(135deg,#FFE8CD,#FFD6BA); box-shadow:0 5px 20px rgba(211,175,55,.38); transform:translateY(-1px); }
+    .btn-zh { font-size:10px; letter-spacing:.3em; font-family:'Noto Serif TC',serif; }
+    .btn-en { font-size:7px; letter-spacing:.22em; opacity:.7; font-style:italic; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo">
+          <img src="brand_assets/logo_preview2.png" alt="Fate Love Heal logo" />
+          <span class="nav-logo-text">Fate Love Heal 卡蘿家</span>
+        </a>
+        <div class="nav-links">
+          <a href="#agenda" data-i18n="nav.about">Pick a Card</a>
+          <a href="#speakers" data-i18n="nav.guides">Benefit &amp; Studies</a>
+          <a href="#why-attend" data-i18n="nav.faq">FAQ</a>
+          <div class="lang-dropdown" id="langDropdown">
+            <button class="btn btn-dark lang-dropdown-btn" onclick="toggleLangMenu(event)">
+              <span id="langLabel">EN</span>
+              <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="lang-dropdown-menu" id="langMenu">
+              <button onclick="setLang('en')" data-lang-opt="en" class="active">English</button>
+              <button onclick="setLang('zh')" data-lang-opt="zh">中文（繁體）</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero-section" style="position:relative;">
+    <!-- Gradient mesh background -->
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;">
+      <div class="grad-orb orb-1"></div>
+      <div class="grad-orb orb-2"></div>
+      <div class="grad-orb orb-3"></div>
+      <div class="grad-orb orb-4"></div>
+      <div class="grad-orb orb-5"></div>
+      <!-- Metallic ripple -->
+      <svg viewBox="0 0 700 420" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%;" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="mGrad" x1="0%" y1="0%" x2="100%" y2="60%">
+            <stop offset="0%"   stop-color="#b8820a"/>
+            <stop offset="28%"  stop-color="#d4a017"/>
+            <stop offset="52%"  stop-color="#f0d060"/>
+            <stop offset="74%"  stop-color="#c9a030"/>
+            <stop offset="100%" stop-color="#c08010"/>
+          </linearGradient>
+        </defs>
+        <!-- 6 rings staggered by 1.4s, 8.4s full cycle — gentle & endless -->
+        <ellipse class="m-ring" cx="480" cy="310" rx="110" ry="44" stroke="url(#mGrad)" stroke-width="1.2" style="--ring-delay:0s"/>
+        <ellipse class="m-ring" cx="480" cy="310" rx="110" ry="44" stroke="url(#mGrad)" stroke-width="1.2" style="--ring-delay:-1.167s"/>
+        <ellipse class="m-ring" cx="480" cy="310" rx="110" ry="44" stroke="url(#mGrad)" stroke-width="1.2" style="--ring-delay:-2.333s"/>
+        <ellipse class="m-ring" cx="480" cy="310" rx="110" ry="44" stroke="url(#mGrad)" stroke-width="1.2" style="--ring-delay:-3.5s"/>
+        <ellipse class="m-ring" cx="480" cy="310" rx="110" ry="44" stroke="url(#mGrad)" stroke-width="1.2" style="--ring-delay:-4.667s"/>
+        <ellipse class="m-ring" cx="480" cy="310" rx="110" ry="44" stroke="url(#mGrad)" stroke-width="1.2" style="--ring-delay:-5.833s"/>
+      </svg>
+    </div>
+    <div class="container" style="position:relative;z-index:1;">
+      <div class="hero-grid">
+        <div>
+          <h1 style="font-family:'Playfair Display',serif; font-size:clamp(2.5rem,5.5vw,4.25rem); font-weight:800; line-height:1.05; letter-spacing:-0.03em; color:var(--colorDark); margin-bottom:16px;">Fate Love Heal</h1>
+          <p style="font-family:'Jost',sans-serif; font-size:0.9375rem; line-height:1.7; color:var(--colorMuted); max-width:440px; margin-bottom:32px;" data-i18n-html="hero.body">
+            Welcome to a space created for your journey.
+Here, we offer a safe and supportive environment where you can slow down, reconnect, and be fully yourself. Whether you are seeking clarity, healing, or deeper meaning, you are gently guided and held every step of the way.
+
+Through shared practices of love, awareness, and transformation, this space is here to support your growth, nurture your inner peace, and help you return to what feels true within you. You are not alone—this is a place where your path is honored, and your becoming is welcomed.
+          </p>
+          <a href="#passes" class="btn btn-dark btn-lg" data-i18n="hero.cta">Find A Session</a>
+        </div>
+        <div>
+          <div id="heroCarousel" style="width:100%; aspect-ratio:16/10; border-radius:12px; overflow:hidden; position:relative;">
+            <div id="heroSlides" style="display:flex; width:300%; height:100%; transition:transform 0.6s cubic-bezier(0.45,0.02,0.09,0.98);">
+              <img src="brand_assets/IMG_4817.JPG" alt="" style="width:33.333%; height:100%; object-fit:cover; flex-shrink:0;" />
+              <div style="width:33.333%; height:100%; flex-shrink:0; background:#e0aa80; display:flex; align-items:center; justify-content:center;">
+                <img src="brand_assets/ImageTREE.png" alt="" style="width:100%; height:100%; object-fit:contain; mix-blend-mode:multiply;" />
+              </div>
+              <img src="brand_assets/hero3.png" alt="" style="width:33.333%; height:100%; object-fit:cover; flex-shrink:0;" />
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;margin-top:14px;justify-content:center;" id="carouselDots">
+            <span class="cdot active" onclick="goSlide(0)" style="width:7px;height:7px;border-radius:50%;background:var(--colorDark);cursor:pointer;transition:background 0.3s;"></span>
+            <span class="cdot" onclick="goSlide(1)" style="width:7px;height:7px;border-radius:50%;background:var(--colorBorder);cursor:pointer;transition:background 0.3s;"></span>
+            <span class="cdot" onclick="goSlide(2)" style="width:7px;height:7px;border-radius:50%;background:var(--colorBorder);cursor:pointer;transition:background 0.3s;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Join -->
+  <section id="why-attend" style="height:auto;min-height:100vh;overflow:visible;padding:80px 0;">
+    <div class="container" style="max-width:900px;">
+      <h2 style="margin-bottom:44px;" data-i18n="about.heading">FAQ</h2>
+      <div class="accordion">
+        <div class="accordion-item open">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span data-i18n="about.acc1.title">What are Sound Healing and Reiki?</span>
+            <div class="accordion-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body" data-i18n="about.acc1.body">They guide attention from external performance toward internal alignment and balance.Learn practice love and self-discovery</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span data-i18n="about.acc2.title">What is the core value of these practices?</span>
+            <div class="accordion-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body" data-i18n="about.acc2.body">Immersive sessions on the inner work that shapes our relationships. Understand how somatic healing, attachment patterns, and self-compassion create new possibilities for love in your life.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span data-i18n="about.acc3.title">Who is this suitable for?</span>
+            <div class="accordion-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body" data-i18n-html="about.acc3.body">It is suited for those seeking a quiet space to reconnect within — also individuals in high-focus, fast-paced environments seeking intentional stillness.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span data-i18n="about.acc4.title">Is it normal to experience emotions or imagery?</span>
+            <div class="accordion-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body" data-i18n="about.acc4.body">Yes, it is part of inner awareness and varies for each individual.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span data-i18n="about.acc5.title">Why does each session feel different?</span>
+            <div class="accordion-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body" data-i18n="about.acc5.body">Each session is shaped by your present state — your energy, emotions, and readiness on that particular day. Sound and Reiki respond to what is alive in you at that moment, so the experience naturally shifts each time. No two sessions are identical, and that variation is part of the practice itself.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span data-i18n="about.acc6.title">How is sound healing different from music?</span>
+            <div class="accordion-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body" data-i18n="about.acc6.body">Music is experienced primarily through listening, often engaging memory, emotion, and thought. Sound healing works through frequency and resonance — tones are applied intentionally to invite the nervous system into stillness, not to entertain. The aim is presence rather than enjoyment.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span data-i18n="about.acc7.title">How often should I attend sessions?</span>
+            <div class="accordion-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body" data-i18n="about.acc7.body">It depends on your rhythm. Some people benefit from regular weekly or bi-weekly sessions as an ongoing practice, while others come occasionally for a reset or during a period of transition. There is no single right answer — trust what your body and schedule need.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span data-i18n="about.acc8.title">Is it normal to feel emotional, and can this replace medical care?</span>
+            <div class="accordion-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body" data-i18n="about.acc8.body">In a relaxed state, inner emotions may gently surface — this is natural and welcomed as part of the process. That said, sound healing and Reiki are experience-based practices focused on relaxation, awareness, and state alignment. They are not a substitute for medical care or diagnosis. For any health-related concerns, professional medical advice is always recommended.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Sessions -->
+  <section id="passes" class="passes-bg" style="padding:40px 0 32px;scroll-margin-top:64px;justify-content:flex-start;">
+    <div class="container">
+      <div style="display:block;width:100%;margin-bottom:16px;">
+       <h2 style="color:#fff;display:block;width:100%;margin:0 0 4px;font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;line-height:1.2;" data-i18n="sessions.heading">Our Sessions</h2>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.875rem;display:block;" data-i18n="sessions.desc">Personalized healing for body, mind and spirit.</p>
+      </div>
+      <!-- Row 1: Sound Bath + Reiki & Sound Bath -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; max-width:900px; margin-bottom:12px;">
+        <!-- Sound Bath -->
+        <div class="pass-card">
+          <p style="font-size:0.6875rem;color:rgba(211,175,55,0.75);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;" data-i18n="sessions.sb.label">聲療 Sound Bath</p>
+          <div>
+            <p style="font-family:'Playfair Display',serif;font-size:0.9375rem;font-weight:600;color:#fff;margin-bottom:4px;" data-i18n="sessions.sb.t1">1-on-1 Private · 60 min</p>
+            <p style="font-size:0.8125rem;color:rgba(255,255,255,0.52);line-height:1.5;" data-i18n="sessions.sb.t1desc">A private 60-min sound bath session to release tension and restore inner stillness.</p>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.08);margin:12px 0;"></div>
+          <div>
+            <p style="font-family:'Playfair Display',serif;font-size:0.9375rem;font-weight:600;color:#fff;margin-bottom:4px;" data-i18n="sessions.sb.t2">For Two · 60 min</p>
+            <p style="font-size:0.8125rem;color:rgba(255,255,255,0.52);line-height:1.5;" data-i18n="sessions.sb.t2desc">A shared 60-min sound bath for two — ideal for couples or close friends seeking calm together.</p>
+          </div>
+        </div>
+        <!-- Reiki & Sound Bath -->
+        <div class="pass-card pass-card-highlight">
+          <p style="font-size:0.6875rem;color:rgba(211,175,55,0.75);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;" data-i18n="sessions.rsb.label">靈氣聲療 Reiki &amp; Sound Bath</p>
+          <div>
+            <p style="font-family:'Playfair Display',serif;font-size:0.9375rem;font-weight:600;color:#fff;margin-bottom:4px;" data-i18n="sessions.rsb.t1">60 min</p>
+            <p style="font-size:0.8125rem;color:rgba(255,255,255,0.52);line-height:1.5;" data-i18n="sessions.rsb.t1desc">Combines Reiki energy healing with sound bath— balancing body, mind and spirit.</p>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.08);margin:12px 0;"></div>
+          <div>
+            <p style="font-family:'Playfair Display',serif;font-size:0.9375rem;font-weight:600;color:#fff;margin-bottom:4px;" data-i18n="sessions.rsb.t2">90 min</p>
+            <p style="font-size:0.8125rem;color:rgba(255,255,255,0.52);line-height:1.5;" data-i18n="sessions.rsb.t2desc">An extended session for deeper restoration — more space for energy work and integration.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Row 2: Reiki · Home Visit · Group Session -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; max-width:900px; margin-bottom:16px;">
+        <!-- Reiki -->
+        <div class="pass-card">
+          <p style="font-size:0.6875rem;color:rgba(211,175,55,0.75);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;" data-i18n="sessions.reiki.label">靈氣 Reiki</p>
+          <p style="font-size:0.8125rem;color:rgba(255,255,255,0.52);line-height:1.6;" data-i18n="sessions.reiki.desc">Available in-person or remotely.</p>
+        </div>
+        <!-- Home Visit -->
+        <div class="pass-card">
+          <p style="font-size:0.6875rem;color:rgba(211,175,55,0.75);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;" data-i18n="sessions.home.label">到府服務 Home Visit</p>
+          <p style="font-size:0.8125rem;color:rgba(255,255,255,0.52);line-height:1.6;" data-i18n="sessions.home.desc">Sound bath or Reiki brought to your space.</p>
+        </div>
+        <!-- Group Session -->
+        <div class="pass-card">
+          <p style="font-size:0.6875rem;color:rgba(211,175,55,0.75);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;" data-i18n="sessions.group.label">團體課程 Group Session</p>
+          <p style="font-size:0.8125rem;color:rgba(255,255,255,0.52);line-height:1.6;" data-i18n="sessions.group.desc">Group sound bath for 3 or more.</p>
+        </div>
+      </div>
+      <!-- CTA -->
+      <div style="text-align:center;">
+        <a href="https://heallovefate.github.io/carol-booking" target="_blank" rel="noopener" style="text-decoration:none;">
+          <button class="btn btn-accent" data-i18n="sessions.cta" style="padding:10px 28px;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;transition:opacity 0.2s,transform 0.2s;" onmouseover="this.style.opacity='0.85';this.style.transform='translateY(-1px)'" onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">BOOK A SESSION</button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefit & Studies -->
+  <section id="speakers">
+    <div class="container">
+      <div style="margin-bottom:32px;">
+        <h2 data-i18n="benefit.heading">Benefit &amp; Studies</h2>
+      </div>
+      <div class="speakers-grid">
+
+        <!-- Card 1: Energy Balance (Reiki) -->
+        <div>
+          <div class="speaker-img-wrap">
+            <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+              <rect width="300" height="300" fill="#f7e8de" rx="8"/>
+              <circle cx="150" cy="150" r="118" stroke="#D3AF37" stroke-width="0.5" fill="none" opacity="0.13"/>
+              <circle cx="150" cy="150" r="96" stroke="#D3AF37" stroke-width="0.7" fill="none" opacity="0.24"/>
+              <circle cx="150" cy="150" r="72" stroke="#D3AF37" stroke-width="0.9" fill="none" opacity="0.38"/>
+              <circle cx="150" cy="150" r="50" stroke="#D3AF37" stroke-width="1.2" fill="none" opacity="0.55"/>
+              <circle cx="150" cy="150" r="30" stroke="#D3AF37" stroke-width="1.4" fill="none" opacity="0.72"/>
+              <circle cx="150" cy="150" r="12" stroke="#D3AF37" stroke-width="1.6" fill="none" opacity="0.88"/>
+              <circle cx="150" cy="150" r="4" fill="#D3AF37" opacity="0.9"/>
+            </svg>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:10px;">
+            <span style="font-size:0.6875rem;padding:2px 8px;border-radius:20px;background:rgba(211,175,55,0.15);color:var(--colorAccent);font-family:'Jost',sans-serif;font-weight:500;letter-spacing:0.04em;" data-i18n="benefit.card1.badge">Reiki</span>
+          </div>
+          <p style="font-family:'Playfair Display',serif;font-weight:600;font-size:0.9375rem;margin-top:6px;" data-i18n="benefit.card1.title">Energy Balance</p>
+          <p style="font-size:0.8125rem;color:var(--colorMuted);margin-top:2px;" data-i18n="benefit.card1.sub">平衡穩定能量</p>
+          <p style="font-size:0.75rem;color:var(--colorMuted);margin-top:6px;line-height:1.6;opacity:0.9;" data-i18n="benefit.card1.desc">Reiki works gently with the body's subtle energy field, fostering a felt sense of wholeness and inner equilibrium.</p>
+        </div>
+
+        <!-- Card 2: Deep Relaxation (Singing Bowl) -->
+        <div>
+          <div class="speaker-img-wrap">
+            <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+              <rect width="300" height="300" fill="#f5e0d5" rx="8"/>
+              <!-- Subtle circle frame -->
+              <circle cx="150" cy="150" r="104" stroke="#9a7060" stroke-width="0.8" fill="none" opacity="0.18"/>
+              <!-- Audio waveform bars — gaussian envelope, 9 bars, 14px spacing, 5px wide -->
+              <line x1="94" y1="126" x2="94" y2="174" stroke="#D3AF37" stroke-width="5" stroke-linecap="round" opacity="0.38"/>
+              <line x1="108" y1="114" x2="108" y2="186" stroke="#D3AF37" stroke-width="5" stroke-linecap="round" opacity="0.52"/>
+              <line x1="122" y1="103" x2="122" y2="197" stroke="#D3AF37" stroke-width="5" stroke-linecap="round" opacity="0.66"/>
+              <line x1="136" y1="96" x2="136" y2="204" stroke="#D3AF37" stroke-width="5" stroke-linecap="round" opacity="0.79"/>
+              <line x1="150" y1="91" x2="150" y2="209" stroke="#D3AF37" stroke-width="5" stroke-linecap="round" opacity="0.90"/>
+              <line x1="164" y1="96" x2="164" y2="204" stroke="#D3AF37" stroke-width="5" stroke-linecap="round" opacity="0.79"/>
+              <line x1="178" y1="103" x2="178" y2="197" stroke="#D3AF37" stroke-width="5" stroke-linecap="round" opacity="0.66"/>
+              <line x1="192" y1="114" x2="192" y2="186" stroke="#D3AF37" stroke-width="5" stroke-linecap="round" opacity="0.52"/>
+              <line x1="206" y1="126" x2="206" y2="174" stroke="#D3AF37" stroke-width="5" stroke-linecap="round" opacity="0.38"/>
+            </svg>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:10px;">
+            <span style="font-size:0.6875rem;padding:2px 8px;border-radius:20px;background:rgba(154,112,96,0.12);color:var(--colorMuted);font-family:'Jost',sans-serif;font-weight:500;letter-spacing:0.04em;" data-i18n="benefit.card2.badge">Singing Bowl</span>
+          </div>
+          <p style="font-family:'Playfair Display',serif;font-weight:600;font-size:0.9375rem;margin-top:6px;" data-i18n="benefit.card2.title">Deep Relaxation</p>
+          <p style="font-size:0.8125rem;color:var(--colorMuted);margin-top:2px;" data-i18n="benefit.card2.sub">深度放鬆</p>
+          <p style="font-size:0.75rem;color:var(--colorMuted);margin-top:6px;line-height:1.6;opacity:0.9;" data-i18n="benefit.card2.desc">The resonant tones of singing bowls create an immersive soundscape, inviting a sense of deep stillness and ease.</p>
+        </div>
+
+        <!-- Card 3: Grounding & Support (Reiki) -->
+        <div>
+          <div class="speaker-img-wrap">
+            <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+              <rect width="300" height="300" fill="#f7e8de" rx="8"/>
+              <line x1="150" y1="195" x2="150" y2="175" stroke="#9a7060" stroke-width="1.2" opacity="0.5" stroke-linecap="round"/>
+              <path d="M88 197 Q119 193 150 197 Q181 201 212 197" stroke="#9a7060" stroke-width="1" fill="none" opacity="0.38" stroke-linecap="round"/>
+              <path d="M150 175 Q108 168 100 142 Q128 156 150 175Z" stroke="#9a7060" stroke-width="0.9" fill="rgba(154,112,96,0.06)" stroke-linejoin="round" opacity="0.7"/>
+              <path d="M150 175 Q192 168 200 142 Q172 156 150 175Z" stroke="#9a7060" stroke-width="0.9" fill="rgba(154,112,96,0.06)" stroke-linejoin="round" opacity="0.7"/>
+              <path d="M150 175 Q114 160 112 132 Q138 150 150 175Z" stroke="#D3AF37" stroke-width="1.2" fill="rgba(211,175,55,0.07)" stroke-linejoin="round"/>
+              <path d="M150 175 Q186 160 188 132 Q162 150 150 175Z" stroke="#D3AF37" stroke-width="1.2" fill="rgba(211,175,55,0.07)" stroke-linejoin="round"/>
+              <path d="M150 175 Q122 154 124 124 Q144 146 150 175Z" stroke="#D3AF37" stroke-width="1.3" fill="rgba(211,175,55,0.10)" stroke-linejoin="round"/>
+              <path d="M150 175 Q178 154 176 124 Q156 146 150 175Z" stroke="#D3AF37" stroke-width="1.3" fill="rgba(211,175,55,0.10)" stroke-linejoin="round"/>
+              <path d="M150 175 Q140 148 150 118 Q160 148 150 175Z" stroke="#D3AF37" stroke-width="1.5" fill="rgba(211,175,55,0.14)" stroke-linejoin="round"/>
+              <circle cx="150" cy="173" r="4" fill="#D3AF37" opacity="0.65"/>
+            </svg>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:10px;">
+            <span style="font-size:0.6875rem;padding:2px 8px;border-radius:20px;background:rgba(211,175,55,0.15);color:var(--colorAccent);font-family:'Jost',sans-serif;font-weight:500;letter-spacing:0.04em;" data-i18n="benefit.card3.badge">Reiki</span>
+          </div>
+          <p style="font-family:'Playfair Display',serif;font-weight:600;font-size:0.9375rem;margin-top:6px;" data-i18n="benefit.card3.title">Grounding &amp; Support</p>
+          <p style="font-size:0.8125rem;color:var(--colorMuted);margin-top:2px;" data-i18n="benefit.card3.sub">安定與支持</p>
+          <p style="font-size:0.75rem;color:var(--colorMuted);margin-top:6px;line-height:1.6;opacity:0.9;" data-i18n="benefit.card3.desc">Reiki sessions offer a calm, nurturing space for you to slow down, pause, and reconnect with a sense of inner stability.</p>
+        </div>
+
+        <!-- Card 4: Mindful Stillness (Singing Bowl) -->
+        <div>
+          <div class="speaker-img-wrap">
+            <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+              <rect width="300" height="300" fill="#f3dfd4" rx="8"/>
+              <!-- Outer echo — scaled crossing path -->
+              <path d="M76 150 C76 112 112 112 150 150 C188 188 224 188 224 150 C224 112 188 112 150 150 C112 188 76 188 76 150Z" stroke="#D3AF37" stroke-width="0.6" fill="none" opacity="0.2"/>
+              <!-- Main ∞ — single continuous crossing path, loops cross at centre ~90° -->
+              <path d="M86 150 C86 118 118 118 150 150 C182 182 214 182 214 150 C214 118 182 118 150 150 C118 182 86 182 86 150Z" stroke="#D3AF37" stroke-width="1.9" fill="none" opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Inner echo -->
+              <path d="M112 150 C112 130 130 130 150 150 C170 170 188 170 188 150 C188 130 170 130 150 150 C130 170 112 170 112 150Z" stroke="#9a7060" stroke-width="0.8" fill="none" opacity="0.28"/>
+              <!-- Centre dot -->
+              <circle cx="150" cy="150" r="2.5" fill="#D3AF37" opacity="0.72"/>
+            </svg>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:10px;">
+            <span style="font-size:0.6875rem;padding:2px 8px;border-radius:20px;background:rgba(154,112,96,0.12);color:var(--colorMuted);font-family:'Jost',sans-serif;font-weight:500;letter-spacing:0.04em;" data-i18n="benefit.card4.badge">Singing Bowl</span>
+          </div>
+          <p style="font-family:'Playfair Display',serif;font-weight:600;font-size:0.9375rem;margin-top:6px;" data-i18n="benefit.card4.title">Mindful Stillness</p>
+          <p style="font-size:0.8125rem;color:var(--colorMuted);margin-top:2px;" data-i18n="benefit.card4.sub">靜心安定</p>
+          <p style="font-size:0.75rem;color:var(--colorMuted);margin-top:6px;line-height:1.6;opacity:0.9;" data-i18n="benefit.card4.desc">Many who practice sound meditation describe experiencing a quieter mind and a renewed sense of inner calm and presence.</p>
+        </div>
+
+        <!-- Card 5: Evening Rest (Combined) -->
+        <div>
+          <div class="speaker-img-wrap">
+            <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+              <rect width="300" height="300" fill="#eedbd2" rx="8"/>
+              <ellipse cx="150" cy="150" rx="96" ry="34" stroke="#D3AF37" stroke-width="1.3" fill="none" opacity="0.72"/>
+              <ellipse cx="150" cy="150" rx="96" ry="34" stroke="#D3AF37" stroke-width="1.3" fill="none" opacity="0.72" transform="rotate(60 150 150)"/>
+              <ellipse cx="150" cy="150" rx="96" ry="34" stroke="#D3AF37" stroke-width="1.3" fill="none" opacity="0.72" transform="rotate(-60 150 150)"/>
+              <circle cx="150" cy="150" r="9" stroke="#D3AF37" stroke-width="1.4" fill="rgba(211,175,55,0.18)" opacity="0.85"/>
+              <circle cx="150" cy="150" r="4" fill="#D3AF37" opacity="0.82"/>
+              <circle cx="246" cy="150" r="4.5" fill="#D3AF37" opacity="0.72"/>
+              <circle cx="102" cy="67" r="4.5" fill="#D3AF37" opacity="0.72"/>
+              <circle cx="102" cy="233" r="4.5" fill="#D3AF37" opacity="0.72"/>
+            </svg>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:10px;">
+            <span style="font-size:0.6875rem;padding:2px 8px;border-radius:20px;background:rgba(211,175,55,0.15);color:var(--colorAccent);font-family:'Jost',sans-serif;font-weight:500;letter-spacing:0.04em;" data-i18n="benefit.card5.badge">Reiki + Bowl</span>
+          </div>
+          <p style="font-family:'Playfair Display',serif;font-weight:600;font-size:0.9375rem;margin-top:6px;" data-i18n="benefit.card5.title">Evening Rest</p>
+          <p style="font-size:0.8125rem;color:var(--colorMuted);margin-top:2px;" data-i18n="benefit.card5.sub">夜間靜息</p>
+          <p style="font-size:0.75rem;color:var(--colorMuted);margin-top:6px;line-height:1.6;opacity:0.9;" data-i18n="benefit.card5.desc">The combination of sound and energy work can become a meaningful part of your wind-down ritual, gently supporting the body's natural readiness for rest.</p>
+        </div>
+
+        <!-- Card 6: Inner Renewal (Reiki) -->
+        <div>
+          <div class="speaker-img-wrap">
+            <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+              <rect width="300" height="300" fill="#f9e4d8" rx="8"/>
+              <!-- Outer glow rings -->
+              <circle cx="150" cy="148" r="80" stroke="#D3AF37" stroke-width="0.7" fill="none" opacity="0.13"/>
+              <circle cx="150" cy="148" r="60" stroke="#D3AF37" stroke-width="0.4" fill="none" opacity="0.09"/>
+              <!-- Heart shape -->
+              <path d="M150 198 C110 172 68 150 68 118 C68 96 86 80 108 80 C124 80 138 90 150 104 C162 90 176 80 192 80 C214 80 232 96 232 118 C232 150 190 172 150 198 Z"
+                fill="none" stroke="#9a7060" stroke-width="2.2" stroke-linejoin="round" opacity="0.80"/>
+              <!-- Inner heart (smaller, offset slightly up for depth) -->
+              <path d="M150 182 C120 162 90 144 90 118 C90 103 102 92 116 92 C130 92 141 101 150 113 C159 101 170 92 184 92 C198 92 210 103 210 118 C210 144 180 162 150 182 Z"
+                fill="none" stroke="#9a7060" stroke-width="1.0" stroke-linejoin="round" opacity="0.28"/>
+              <!-- Soft fill -->
+              <path d="M150 198 C110 172 68 150 68 118 C68 96 86 80 108 80 C124 80 138 90 150 104 C162 90 176 80 192 80 C214 80 232 96 232 118 C232 150 190 172 150 198 Z"
+                fill="#D3AF37" opacity="0.10"/>
+              <!-- Gold accent dot at top-center dip -->
+              <circle cx="150" cy="104" r="4.5" fill="#D3AF37" opacity="0.55"/>
+              <circle cx="150" cy="104" r="9" stroke="#D3AF37" stroke-width="0.7" fill="none" opacity="0.22"/>
+              <!-- Small accent dots along lower curve -->
+              <circle cx="104" cy="162" r="2.5" fill="#D3AF37" opacity="0.38"/>
+              <circle cx="196" cy="162" r="2.5" fill="#D3AF37" opacity="0.38"/>
+              <circle cx="150" cy="194" r="2.5" fill="#D3AF37" opacity="0.42"/>
+            </svg>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:10px;">
+            <span style="font-size:0.6875rem;padding:2px 8px;border-radius:20px;background:rgba(211,175,55,0.15);color:var(--colorAccent);font-family:'Jost',sans-serif;font-weight:500;letter-spacing:0.04em;" data-i18n="benefit.card6.badge">Reiki</span>
+          </div>
+          <p style="font-family:'Playfair Display',serif;font-weight:600;font-size:0.9375rem;margin-top:6px;" data-i18n="benefit.card6.title">Inner Renewal</p>
+          <p style="font-size:0.8125rem;color:var(--colorMuted);margin-top:2px;" data-i18n="benefit.card6.sub">內在更新</p>
+          <p style="font-size:0.75rem;color:var(--colorMuted);margin-top:6px;line-height:1.6;opacity:0.9;" data-i18n="benefit.card6.desc">Reiki encourages a state of deep stillness, creating space for the body and mind to naturally settle, restore, and renew.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Healing Card Draw -->
+  <section id="agenda" style="background:var(--colorOffWhite); justify-content:center;">
+    <div class="container" style="width:100%;">
+      <!-- Two-column layout: text left, card right -->
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:60px; height:100%;">
+
+        <!-- LEFT: text content -->
+        <div style="flex:0 0 360px; display:flex; flex-direction:column; gap:32px; padding:40px 0;">
+          <div>
+            <h2 style="margin-bottom:24px; text-align:left;">今日療癒牌<br><span style="font-size:0.85em;opacity:0.75;">Today's Healing Message</span></h2>
+            <!-- Chinese lines -->
+            <p style="font-family:'Noto Serif TC',serif; font-size:1rem; line-height:2.4; color:var(--colorDark);">靜下來，給自己三次深呼吸，</p>
+            <p style="font-family:'Noto Serif TC',serif; font-size:1rem; line-height:2.4; color:var(--colorDark); margin-bottom:24px;">然後為今天的自己抽一張牌。</p>
+            <!-- Divider -->
+            <div style="width:60px; height:1px; background:linear-gradient(90deg, var(--colorGold), transparent); margin-bottom:20px;"></div>
+            <!-- English lines -->
+            <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.0625rem; line-height:1.9; color:var(--colorMuted);">Take a moment to pause and give yourself</p>
+            <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.0625rem; line-height:1.9; color:var(--colorMuted);">three deep breaths, then draw a card</p>
+            <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.0625rem; line-height:1.9; color:var(--colorMuted);">for yourself today.</p>
+          </div>
+          <div class="breath-dots" style="justify-content:flex-start;">
+            <div class="dot" id="d1"></div>
+            <div class="dot" id="d2"></div>
+            <div class="dot" id="d3"></div>
+          </div>
+        </div>
+
+        <!-- RIGHT: card (center) + button (far right) -->
+        <div style="display:flex; align-items:center; gap:32px; flex-shrink:0;">
+        <div class="card-wrap">
+        <div class="card" id="card">
+            <div class="card-bg"></div>
+
+            <!-- Gold botanical SVG decoration -->
+            <svg class="deco" viewBox="0 0 300 460" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="mg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%"   stop-color="#9a6b00"/>
+                  <stop offset="22%"  stop-color="#c9920a"/>
+                  <stop offset="40%"  stop-color="#f0d060"/>
+                  <stop offset="55%"  stop-color="#d4a820"/>
+                  <stop offset="72%"  stop-color="#f0c840"/>
+                  <stop offset="88%"  stop-color="#b87c0c"/>
+                  <stop offset="100%" stop-color="#9a6b00"/>
+                </linearGradient>
+                <linearGradient id="mg2" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%"   stop-color="#b8900a" stop-opacity=".6"/>
+                  <stop offset="45%"  stop-color="#f0d060" stop-opacity=".85"/>
+                  <stop offset="100%" stop-color="#b8900a" stop-opacity=".6"/>
+                </linearGradient>
+                <linearGradient id="bot" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%"   stop-color="#c9a030" stop-opacity=".5"/>
+                  <stop offset="50%"  stop-color="#f0d060" stop-opacity=".9"/>
+                  <stop offset="100%" stop-color="#c9a030" stop-opacity=".5"/>
+                </linearGradient>
+              </defs>
+              <!-- Main frame -->
+              <rect x="6" y="6" width="288" height="448" rx="14" stroke="url(#mg)" stroke-width="2.6" fill="none"/>
+              <rect x="13" y="13" width="274" height="434" rx="10" stroke="url(#mg2)" stroke-width="0.8" fill="none"/>
+              <!-- Corner L-brackets -->
+              <path d="M6 56 L6 6 L56 6"       stroke="url(#mg)" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+              <circle cx="6"   cy="6"   r="3"  fill="url(#mg)"/>
+              <path d="M294 56 L294 6 L244 6"  stroke="url(#mg)" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+              <circle cx="294" cy="6"   r="3"  fill="url(#mg)"/>
+              <path d="M6 404 L6 454 L56 454"  stroke="url(#mg)" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+              <circle cx="6"   cy="454" r="3"  fill="url(#mg)"/>
+              <path d="M294 404 L294 454 L244 454" stroke="url(#mg)" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+              <circle cx="294" cy="454" r="3"  fill="url(#mg)"/>
+              <!-- Top centre -->
+              <line x1="78" y1="6" x2="118" y2="6" stroke="url(#mg)" stroke-width="1.8" stroke-linecap="round"/>
+              <polygon points="150,0 154.5,7 150,14 145.5,7" stroke="url(#mg)" stroke-width="1" fill="url(#mg)" fill-opacity=".3"/>
+              <line x1="182" y1="6" x2="222" y2="6" stroke="url(#mg)" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="124" cy="6" r="1.8" fill="url(#mg)"/>
+              <circle cx="176" cy="6" r="1.8" fill="url(#mg)"/>
+              <!-- Bottom centre -->
+              <line x1="78" y1="454" x2="118" y2="454" stroke="url(#mg)" stroke-width="1.8" stroke-linecap="round"/>
+              <polygon points="150,460 154.5,453 150,446 145.5,453" stroke="url(#mg)" stroke-width="1" fill="url(#mg)" fill-opacity=".3"/>
+              <line x1="182" y1="454" x2="222" y2="454" stroke="url(#mg)" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="124" cy="454" r="1.8" fill="url(#mg)"/>
+              <circle cx="176" cy="454" r="1.8" fill="url(#mg)"/>
+              <!-- Side markers -->
+              <line x1="6" y1="155" x2="20" y2="155" stroke="url(#mg)" stroke-width="1.2"/>
+              <circle cx="24" cy="155" r="1.4" fill="url(#mg)"/>
+              <line x1="6" y1="230" x2="22" y2="230" stroke="url(#mg)" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="6" y1="305" x2="20" y2="305" stroke="url(#mg)" stroke-width="1.2"/>
+              <circle cx="24" cy="305" r="1.4" fill="url(#mg)"/>
+              <line x1="294" y1="155" x2="280" y2="155" stroke="url(#mg)" stroke-width="1.2"/>
+              <circle cx="276" cy="155" r="1.4" fill="url(#mg)"/>
+              <line x1="294" y1="230" x2="278" y2="230" stroke="url(#mg)" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="294" y1="305" x2="280" y2="305" stroke="url(#mg)" stroke-width="1.2"/>
+              <circle cx="276" cy="305" r="1.4" fill="url(#mg)"/>
+              <!-- Botanical — bottom-left -->
+              <path d="M18 448 C22 430 28 415 36 398 C44 381 50 365 52 348" stroke="url(#bot)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M30 420 C24 414 18 408 14 400" stroke="url(#bot)" stroke-width="1" fill="none" stroke-linecap="round"/>
+              <path d="M26 434 C18 424 14 415 18 408 C24 414 28 424 26 434Z" stroke="url(#bot)" stroke-width="1.1" fill="url(#bot)" fill-opacity=".2" stroke-linecap="round"/>
+              <path d="M26 434 C34 424 40 415 36 408 C30 414 26 424 26 434Z" stroke="url(#bot)" stroke-width="1.1" fill="url(#bot)" fill-opacity=".2" stroke-linecap="round"/>
+              <path d="M26 434 C22 424 20 416 18 408" stroke="url(#bot)" stroke-width="0.5" stroke-opacity=".5" stroke-linecap="round"/>
+              <path d="M34 413 C24 402 20 391 24 383 C31 390 36 401 34 413Z" stroke="url(#bot)" stroke-width="1.1" fill="url(#bot)" fill-opacity=".2" stroke-linecap="round"/>
+              <path d="M34 413 C44 402 48 391 44 383 C37 390 34 401 34 413Z" stroke="url(#bot)" stroke-width="1.1" fill="url(#bot)" fill-opacity=".2" stroke-linecap="round"/>
+              <path d="M34 413 C30 402 27 392 24 383" stroke="url(#bot)" stroke-width="0.5" stroke-opacity=".5" stroke-linecap="round"/>
+              <path d="M42 390 C32 379 29 367 33 358 C40 366 44 378 42 390Z" stroke="url(#bot)" stroke-width="1.1" fill="url(#bot)" fill-opacity=".2" stroke-linecap="round"/>
+              <path d="M42 390 C52 379 55 367 51 358 C44 366 42 378 42 390Z" stroke="url(#bot)" stroke-width="1.1" fill="url(#bot)" fill-opacity=".2" stroke-linecap="round"/>
+              <path d="M42 390 C38 379 35 368 33 358" stroke="url(#bot)" stroke-width="0.5" stroke-opacity=".5" stroke-linecap="round"/>
+              <path d="M49 367 C40 357 38 346 42 338 C48 346 51 357 49 367Z" stroke="url(#bot)" stroke-width="1" fill="url(#bot)" fill-opacity=".18" stroke-linecap="round"/>
+              <path d="M49 367 C58 357 60 346 56 338 C50 346 49 357 49 367Z" stroke="url(#bot)" stroke-width="1" fill="url(#bot)" fill-opacity=".18" stroke-linecap="round"/>
+              <!-- Botanical — bottom-right (mirror) -->
+              <path d="M282 448 C278 430 272 415 264 398 C256 381 250 365 248 348" stroke="url(#bot)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M270 420 C276 414 282 408 286 400" stroke="url(#bot)" stroke-width="1" fill="none" stroke-linecap="round"/>
+              <path d="M274 434 C282 424 286 415 282 408 C276 414 272 424 274 434Z" stroke="url(#bot)" stroke-width="1.1" fill="url(#bot)" fill-opacity=".2" stroke-linecap="round"/>
+              <path d="M274 434 C266 424 260 415 264 408 C270 414 274 424 274 434Z" stroke="url(#bot)" stroke-width="1.1" fill="url(#bot)" fill-opacity=".2" stroke-linecap="round"/>
+              <path d="M274 434 C278 424 280 416 282 408" stroke="url(#bot)" stroke-width="0.5" stroke-opacity=".5" stroke-linecap="round"/>
+              <path d="M266 413 C276 402 280 391 276 383 C269 390 266 401 266 413Z" stroke="url(#bot)" stroke-width="1.1" fill="url(#bot)" fill-opacity=".2" stroke-linecap="round"/>
+              <path d="M266 413 C256 402 252 391 256 383 C263 390 266 401 266 413Z" stroke="url(#bot)" stroke-width="1.1" fill="url(#bot)" fill-opacity=".2" stroke-linecap="round"/>
+              <path d="M266 413 C270 402 273 392 276 383" stroke="url(#bot)" stroke-width="0.5" stroke-opacity=".5" stroke-linecap="round"/>
+              <path d="M258 390 C268 379 271 367 267 358 C260 366 256 378 258 390Z" stroke="url(#bot)" stroke-width="1.1" fill="url(#bot)" fill-opacity=".2" stroke-linecap="round"/>
+              <path d="M258 390 C248 379 245 367 249 358 C256 366 258 378 258 390Z" stroke="url(#bot)" stroke-width="1.1" fill="url(#bot)" fill-opacity=".2" stroke-linecap="round"/>
+              <path d="M258 390 C262 379 265 368 267 358" stroke="url(#bot)" stroke-width="0.5" stroke-opacity=".5" stroke-linecap="round"/>
+              <path d="M251 367 C260 357 262 346 258 338 C252 346 249 357 251 367Z" stroke="url(#bot)" stroke-width="1" fill="url(#bot)" fill-opacity=".18" stroke-linecap="round"/>
+              <path d="M251 367 C242 357 240 346 244 338 C250 346 251 357 251 367Z" stroke="url(#bot)" stroke-width="1" fill="url(#bot)" fill-opacity=".18" stroke-linecap="round"/>
+              <!-- Botanical — top-left floral sprig -->
+              <path d="M18 88 C22 74 28 62 34 52 C38 44 40 36 38 26" stroke="url(#bot)" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <path d="M26 68 C18 63 13 56 14 48" stroke="url(#bot)" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+              <path d="M31 52 C23 48 19 41 21 33" stroke="url(#bot)" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+              <path d="M22 78 C13 70 10 61 14 53 C20 60 24 70 22 78Z" stroke="url(#bot)" stroke-width="1" fill="url(#bot)" fill-opacity=".18" stroke-linecap="round"/>
+              <path d="M28 62 C19 54 17 44 21 37 C27 44 30 54 28 62Z" stroke="url(#bot)" stroke-width="1" fill="url(#bot)" fill-opacity=".18" stroke-linecap="round"/>
+              <path d="M34 46 C25 39 23 29 27 22 C33 29 36 39 34 46Z" stroke="url(#bot)" stroke-width="1" fill="url(#bot)" fill-opacity=".18" stroke-linecap="round"/>
+              <circle cx="38" cy="24" r="3.2" stroke="url(#bot)" stroke-width="1"  fill="url(#bot)" fill-opacity=".12"/>
+              <circle cx="32" cy="19" r="2.5" stroke="url(#bot)" stroke-width="0.9" fill="url(#bot)" fill-opacity=".1"/>
+              <circle cx="44" cy="20" r="2.2" stroke="url(#bot)" stroke-width="0.9" fill="url(#bot)" fill-opacity=".1"/>
+              <circle cx="36" cy="15" r="1.8" stroke="url(#bot)" stroke-width="0.8" fill="none"/>
+              <line x1="38" y1="21" x2="38" y2="18" stroke="url(#bot)" stroke-width="0.6" stroke-opacity=".6"/>
+              <line x1="35" y1="22" x2="33" y2="20" stroke="url(#bot)" stroke-width="0.6" stroke-opacity=".6"/>
+              <line x1="41" y1="22" x2="43" y2="20" stroke="url(#bot)" stroke-width="0.6" stroke-opacity=".6"/>
+              <!-- Botanical — top-right floral sprig (mirror) -->
+              <path d="M282 88 C278 74 272 62 266 52 C262 44 260 36 262 26" stroke="url(#bot)" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <path d="M274 68 C282 63 287 56 286 48" stroke="url(#bot)" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+              <path d="M269 52 C277 48 281 41 279 33"  stroke="url(#bot)" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+              <path d="M278 78 C287 70 290 61 286 53 C280 60 276 70 278 78Z" stroke="url(#bot)" stroke-width="1" fill="url(#bot)" fill-opacity=".18" stroke-linecap="round"/>
+              <path d="M272 62 C281 54 283 44 279 37 C273 44 270 54 272 62Z" stroke="url(#bot)" stroke-width="1" fill="url(#bot)" fill-opacity=".18" stroke-linecap="round"/>
+              <path d="M266 46 C275 39 277 29 273 22 C267 29 264 39 266 46Z" stroke="url(#bot)" stroke-width="1" fill="url(#bot)" fill-opacity=".18" stroke-linecap="round"/>
+              <circle cx="262" cy="24" r="3.2" stroke="url(#bot)" stroke-width="1"  fill="url(#bot)" fill-opacity=".12"/>
+              <circle cx="268" cy="19" r="2.5" stroke="url(#bot)" stroke-width="0.9" fill="url(#bot)" fill-opacity=".1"/>
+              <circle cx="256" cy="20" r="2.2" stroke="url(#bot)" stroke-width="0.9" fill="url(#bot)" fill-opacity=".1"/>
+              <circle cx="264" cy="15" r="1.8" stroke="url(#bot)" stroke-width="0.8" fill="none"/>
+              <line x1="262" y1="21" x2="262" y2="18" stroke="url(#bot)" stroke-width="0.6" stroke-opacity=".6"/>
+              <line x1="265" y1="22" x2="267" y2="20" stroke="url(#bot)" stroke-width="0.6" stroke-opacity=".6"/>
+              <line x1="259" y1="22" x2="257" y2="20" stroke="url(#bot)" stroke-width="0.6" stroke-opacity=".6"/>
+              <!-- Botanical — bottom-centre leaf cluster -->
+              <path d="M120 454 C132 446 142 443 150 443 C158 443 168 446 180 454" stroke="url(#bot)" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+              <path d="M132 452 C126 444 124 436 128 430 C134 436 136 445 132 452Z" stroke="url(#bot)" stroke-width="0.9" fill="url(#bot)" fill-opacity=".15" stroke-linecap="round"/>
+              <path d="M168 452 C174 444 176 436 172 430 C166 436 164 445 168 452Z" stroke="url(#bot)" stroke-width="0.9" fill="url(#bot)" fill-opacity=".15" stroke-linecap="round"/>
+              <circle cx="150" cy="441" r="2.5" stroke="url(#bot)" stroke-width="0.8" fill="url(#bot)" fill-opacity=".12"/>
+              <line x1="150" y1="454" x2="150" y2="444" stroke="url(#bot)" stroke-width="0.7" stroke-opacity=".5"/>
+            </svg>
+
+            <!-- Cover face -->
+            <div class="card-cover" id="cover">
+              <div class="cover-logo-wrap">
+                <img src="brand_assets/logo_preview2.png" alt="Heal Love Fate logo" />
+              </div>
+              <div class="cover-texts">
+                <div class="cover-brand">Heal Love Fate</div>
+                <div class="cover-hint">Touch to reveal</div>
+              </div>
+            </div>
+
+            <!-- Result face -->
+            <div class="card-result" id="result">
+              <div class="rule"></div>
+              <div class="msg">
+                <div class="msg-zh" id="msgZh"></div>
+                <div class="rule"></div>
+                <div class="msg-en" id="msgEn"></div>
+              </div>
+              <div class="card-foot">
+                <div class="foot-rule"></div>
+                <div class="foot-logo">
+                  <img src="brand_assets/logo_preview2.png" alt="" />
+                </div>
+                <div class="foot-text">Heal Love Fate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </div><!-- end card-wrap -->
+
+        <!-- Draw again button: far right, vertically centered -->
+        <button class="draw-again-btn" id="againBtn" style="align-self:center;">
+          <span class="btn-zh">再抽一張</span>
+          <span class="btn-en">Draw another card</span>
+        </button>
+        </div><!-- end right column -->
+
+      </div><!-- end two-column -->
+    </div>
+  </section>
+
+  <!-- Gentle Reminders -->
+  <section id="sponsors" style="background:#3a2010; justify-content:flex-start; padding:0; height:100vh; min-height:700px; overflow:hidden; scroll-margin-top:0;">
+    <div class="container" style="display:flex;flex-direction:column;height:100%;padding:80px 0 20px;box-sizing:border-box;">
+
+      <!-- Heading -->
+      <div style="margin-bottom:16px;flex-shrink:0;">
+        <p style="font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--colorAccent);margin-bottom:5px;" data-i18n="reminders.label">Gentle Reminders</p>
+        <h2 style="color:#fff;font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;line-height:1.2;margin:0;" data-i18n="reminders.heading">A Few Things to Know</h2>
+      </div>
+
+      <!-- 3×2 grid, fills available height -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:10px;flex:1;min-height:0;">
+
+        <!-- Card 1: Medical -->
+        <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;overflow:hidden;">
+          <div style="width:30px;height:30px;border-radius:50%;background:rgba(211,175,55,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:9px;flex-shrink:0;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#D3AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <p style="font-family:'Playfair Display',serif;font-size:0.8125rem;font-weight:600;color:#fff;margin-bottom:6px;flex-shrink:0;" data-i18n="reminders.item1.title">Not a Medical Substitute</p>
+          <p style="font-size:0.7rem;color:rgba(255,255,255,0.52);line-height:1.65;" data-i18n="reminders.item1.body">Sound healing and Reiki are not substitutes for medical care. If you are currently receiving medical treatment, please consult your doctor first — and we warmly invite you to share your situation with us before booking.</p>
+        </div>
+
+        <!-- Card 2: Open to all -->
+        <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;overflow:hidden;">
+          <div style="width:30px;height:30px;border-radius:50%;background:rgba(211,175,55,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:9px;flex-shrink:0;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#D3AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <p style="font-family:'Playfair Display',serif;font-size:0.8125rem;font-weight:600;color:#fff;margin-bottom:6px;flex-shrink:0;" data-i18n="reminders.item2.title">Open to Everyone</p>
+          <p style="font-size:0.7rem;color:rgba(255,255,255,0.52);line-height:1.65;" data-i18n="reminders.item2.body">Our services are not affiliated with any religion or belief system. Everyone is warmly welcomed. Group sessions are announced periodically on our social media — follow us to stay updated.</p>
+        </div>
+
+        <!-- Card 3: Clothing -->
+        <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;overflow:hidden;">
+          <div style="width:30px;height:30px;border-radius:50%;background:rgba(211,175,55,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:9px;flex-shrink:0;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#D3AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <p style="font-family:'Playfair Display',serif;font-size:0.8125rem;font-weight:600;color:#fff;margin-bottom:6px;flex-shrink:0;" data-i18n="reminders.item3.title">What to Wear</p>
+          <p style="font-size:0.7rem;color:rgba(255,255,255,0.52);line-height:1.65;" data-i18n="reminders.item3.body">We recommend loose, comfortable clothing so your body can fully relax. Avoid tight or restrictive outfits. You may also bring a light blanket or eye mask if you wish.</p>
+        </div>
+
+        <!-- Card 4: After session -->
+        <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;overflow:hidden;">
+          <div style="width:30px;height:30px;border-radius:50%;background:rgba(211,175,55,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:9px;flex-shrink:0;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#D3AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+          </div>
+          <p style="font-family:'Playfair Display',serif;font-size:0.8125rem;font-weight:600;color:#fff;margin-bottom:6px;flex-shrink:0;" data-i18n="reminders.item4.title">After Your Session</p>
+          <p style="font-size:0.7rem;color:rgba(255,255,255,0.52);line-height:1.65;" data-i18n="reminders.item4.body">Drink plenty of water afterward and give your body time to integrate. Feeling tired or emotional is completely natural — allow yourself to rest and receive with gentleness.</p>
+        </div>
+
+        <!-- Card 5: Feedback -->
+        <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;overflow:hidden;">
+          <div style="width:30px;height:30px;border-radius:50%;background:rgba(211,175,55,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:9px;flex-shrink:0;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#D3AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <p style="font-family:'Playfair Display',serif;font-size:0.8125rem;font-weight:600;color:#fff;margin-bottom:6px;flex-shrink:0;" data-i18n="reminders.item5.title">Your Feedback Matters</p>
+          <p style="font-size:0.7rem;color:rgba(255,255,255,0.52);line-height:1.65;" data-i18n="reminders.item5.body">We warmly welcome your thoughts after each session. Your sharing helps us grow and serve you better. Feel free to reach out anytime.</p>
+        </div>
+
+        <!-- Card 6: Special health conditions -->
+        <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;overflow:hidden;">
+          <div style="width:30px;height:30px;border-radius:50%;background:rgba(211,175,55,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:9px;flex-shrink:0;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#D3AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <p style="font-family:'Playfair Display',serif;font-size:0.8125rem;font-weight:600;color:#fff;margin-bottom:6px;flex-shrink:0;" data-i18n="reminders.item6.title">Special Health Conditions</p>
+          <p style="font-size:0.7rem;color:rgba(255,255,255,0.52);line-height:1.65;" data-i18n="reminders.item6.body">If you are pregnant, have a heart condition, or any other health concern, please let us know when booking so we can best support and care for you.</p>
+        </div>
+
+      </div>
+
+      <!-- Footer merged -->
+      <div style="border-top:1px solid rgba(255,255,255,0.1);padding:12px 0 0;margin-top:12px;flex-shrink:0;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;flex-wrap:wrap;gap:12px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <img src="brand_assets/logo_preview2.png" alt="Fate Love Heal" style="width:26px;height:26px;object-fit:contain;opacity:0.7;" />
+            <div>
+              <p style="font-family:'Playfair Display',serif;font-size:0.875rem;font-weight:600;color:#fff;letter-spacing:-0.01em;">Fate Love Heal</p>
+              <p style="font-size:0.65rem;color:rgba(255,255,255,0.35);margin-top:1px;">Community Gathering 2026</p>
+            </div>
+          </div>
+          <a href="#passes" class="btn btn-white" data-i18n="footer.contact">Contact Us</a>
+        </div>
+        <p style="font-size:0.65rem;color:rgba(255,255,255,0.2);" data-i18n="footer.copy">© 2026 Fate Love Heal. All rights reserved.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    /* ── Healing card draw ── */
+    const cards = [
+      {zh:"你不需要變得更好，才值得被好好對待。",en:"You don't need to become better to deserve kindness — you already do."},
+      {zh:"你所有的樣子，都可以被溫柔地接住。",en:"Every part of you — even the parts you hide — deserves a soft landing."},
+      {zh:"不喜歡自己的那些時刻，只是還沒認識自己而已。",en:"The parts of yourself you dislike are just waiting to be understood."},
+      {zh:"你已經努力很久了，允許自己今天不用那麼用力。",en:"You've been trying so hard. It's okay to put it down for a while."},
+      {zh:"不完整，也是完整的一部分。",en:"Being incomplete is still being whole."},
+      {zh:"你的傷疤不是缺陷，是你走過來了的記號。",en:"Your scars are not flaws — they are proof you made it through."},
+      {zh:"接納自己，不是放棄進步，而是帶著愛出發。",en:"Accepting yourself isn't giving up — it's beginning with love."},
+      {zh:"你值得自己給自己的那份溫柔。",en:"The tenderness you give others — you deserve it too."},
+      {zh:"你不需要解釋自己的感受，感受本身就是真實的。",en:"Your feelings don't need justification. They are real, just as they are."},
+      {zh:"就算不知道下一步，你也一直都在往對的方向走。",en:"Even when you can't see the path, you are already moving toward it."},
+      {zh:"這一刻，你已經在你需要在的地方了。",en:"Right now, you are exactly where you need to be."},
+      {zh:"深呼吸。你還在。這就夠了。",en:"Breathe. You're still here. That is enough."},
+      {zh:"當下這一刻，沒有什麼需要被解決。",en:"In this moment, nothing needs to be fixed."},
+      {zh:"放下對明天的擔憂，你現在是安全的。",en:"Let tomorrow wait. Right now, you are safe."},
+      {zh:"你的腳踩著地，你的心是穩的。",en:"Feel the ground beneath you. You are steady."},
+      {zh:"你願意停下來感受自己，這本身就是一種勇氣。",en:"Pausing to feel what's inside — that itself takes courage."},
+      {zh:"今天你選擇照顧自己，這是很重要的事。",en:"Choosing to care for yourself today — that matters more than you know."},
+      {zh:"靜止不是浪費時間，靜止讓你再次聽見自己。",en:"Stillness is not wasted time. It's how you hear yourself again."},
+      {zh:"你不需要一直往前，偶爾停下來感受也是前進的方式。",en:"Pausing to feel is also a way of moving forward."},
+      {zh:"此刻的你，已經完整。",en:"In this moment, you are whole."},
+      {zh:"害怕不代表你做不到，代表你正在做一件對你重要的事。",en:"Fear means it matters to you — and that is exactly why you can do it."},
+      {zh:"踏出去，不需要先看清楚全部的路。",en:"You don't need to see the whole road to take the first step."},
+      {zh:"你比你以為的更有勇氣。",en:"You are braver than you give yourself credit for."},
+      {zh:"那個讓你猶豫的聲音，不是你真正的聲音。",en:"The voice that makes you hesitate — that's not your real voice."},
+      {zh:"就算慢，你也一直沒有停下來。",en:"Even when it felt slow, you kept going. That is courage."},
+      {zh:"你已經撐過很多次了，這次也可以。",en:"You've made it through every hard thing before this. You'll make it through this too."},
+      {zh:"改變讓人不舒服，但不舒服不代表不對。",en:"Discomfort doesn't mean wrong. Sometimes it means you're finally on the right path."},
+      {zh:"選擇自己，是一種勇敢。",en:"Choosing yourself — even when it's hard — is an act of courage."},
+      {zh:"你不需要準備好了才能開始，開始本身就是準備。",en:"You don't have to be ready to begin. Beginning is how you get ready."},
+      {zh:"那件讓你心跳加速的事，也許就是你該去的地方。",en:"The thing that makes your heart race — maybe that's exactly where you're meant to go."},
+      {zh:"你值得被愛，不是因為你做了什麼，而是因為你是你。",en:"You are worthy of love — not for what you do, but for who you are."},
+      {zh:"你不需要縮小自己，才能讓別人愛你。",en:"You never have to make yourself smaller to be loved."},
+      {zh:"你值得的，比你目前允許自己擁有的還要多。",en:"You deserve more than you've been allowing yourself to receive."},
+      {zh:"你給出去的溫柔，也可以留一些給自己。",en:"The warmth you give so freely — you're allowed to keep some for yourself."},
+      {zh:"你的存在，就已經讓這個世界不一樣了。",en:"The fact that you exist changes things — more than you realize."},
+      {zh:"被愛，不需要事先證明你夠好。",en:"You don't have to earn love. You are already enough."},
+      {zh:"讓人愛你，也是一種勇氣。",en:"Letting yourself be loved takes courage too."},
+      {zh:"你的心是溫暖的，願意來到這裡的你，值得被溫柔接住。",en:"Your heart is warm. For showing up here — you deserve to be held gently."},
+      {zh:"沒有人走過你走的那條路，所以你才這麼重要。",en:"No one has walked your exact path. That is why you matter."},
+      {zh:"你的與眾不同不是問題，是你的禮物。",en:"What makes you different is not a problem — it is your gift."},
+      {zh:"這個世界需要你的那個角度，別藏起來。",en:"The world needs your particular way of seeing things. Don't hide it."},
+      {zh:"你不需要像任何人，你只需要更像你自己。",en:"You don't need to be like anyone else. Just more of yourself."},
+      {zh:"你的故事，沒有人可以替你說。",en:"No one can tell your story the way you can."},
+      {zh:"你的存在本身就是一種貢獻。",en:"Your presence in this world is already a contribution."},
+      {zh:"做你自己，不是自私，是對這個世界最真實的給予。",en:"Being yourself isn't selfish — it's the most genuine gift you can offer."},
+      {zh:"你比你自己以為的更有能力。",en:"You are more capable than you currently believe."},
+      {zh:"就算看起來走錯了路，那條路也給了你現在的你。",en:"Even the wrong paths brought you here. Nothing was wasted."},
+      {zh:"你不需要所有人都同意，你才可以繼續走。",en:"You don't need everyone's approval to keep moving forward."},
+      {zh:"懷疑自己的時候，就想想你已經做到的那些事。",en:"When doubt creeps in, remember what you've already managed to do."},
+      {zh:"你的聲音值得被聽見，包括你自己要先聽見它。",en:"Your voice deserves to be heard — starting with being heard by yourself."},
+      {zh:"你願意來到這裡，就已經是相信自己的開始。",en:"Showing up here — that was already an act of trusting yourself."},
+      {zh:"你現在是安全的。真的。",en:"You are safe right now. Truly."},
+      {zh:"你的身體記得怎麼放鬆，讓它慢慢來。",en:"Your body knows how to release. Give it the time it needs."},
+      {zh:"就算過去不安全，現在的你已經在更穩的地方了。",en:"Even if the past felt unsafe, you have landed somewhere steadier now."},
+      {zh:"你可以慢下來，世界不會因此崩掉。",en:"You can slow down. The world will hold together without you rushing."},
+      {zh:"你被允許休息，不只是在累壞之後。",en:"You are allowed to rest — not just when you've broken down, but before."},
+      {zh:"根，是讓你走得更遠的東西，不是把你綁住的東西。",en:"Roots are what let you grow further — not what hold you back."},
+      {zh:"你有能力為自己創造安全感，一步一步來。",en:"You are capable of building safety for yourself — slowly, steadily."},
+      {zh:"你早就知道答案了，只是還不確定自己知道。",en:"You already know the answer. You're just not sure you trust it yet."},
+      {zh:"那個一閃而過的念頭，值得你多看一眼。",en:"That fleeting thought that crossed your mind — it deserves a second look."},
+      {zh:"感覺對，不需要邏輯上的許可。",en:"Something feeling right doesn't need logical permission."},
+      {zh:"你的直覺不是幻覺，是你積累了很久的智慧。",en:"Your intuition isn't imagination — it's wisdom you've been gathering your whole life."},
+      {zh:"當你猶豫的時候，問問你的身體，它通常比腦袋更誠實。",en:"When you're unsure, ask your body. It's usually more honest than your mind."},
+      {zh:"慢下來，你的答案不在外面，在裡面。",en:"Slow down. Your answers aren't out there — they're in here."},
+      {zh:"你有一種方式看世界，那是任何人都學不來的。",en:"You see the world in a way no one else can replicate."},
+      {zh:"玩，也是一種創造。",en:"Play is also a form of creation."},
+      {zh:"你的聲音、你的故事、你的視角，都是這個世界需要的。",en:"Your voice, your stories, your perspective — the world needs all of it."},
+      {zh:"你不需要每天都狀態很好，起伏本來就是人的一部分。",en:"You don't have to be at your best every day. Highs and lows are simply part of being human."},
+      {zh:"對自己嚴格久了，偶爾溫柔一次，不是放棄，是需要。",en:"After being hard on yourself for so long, allowing a moment of gentleness isn't giving up — it's what you need."},
+      {zh:"你不需要假裝沒事，你可以有情緒，可以需要時間。",en:"You don't have to pretend everything is fine. You're allowed to feel, and you're allowed to take your time."},
+      {zh:"你不需要每個決定都是對的，你只需要每次都是真實的。",en:"You don't need every decision to be right. You just need each one to be honest."},
+      {zh:"你允許別人犯錯，也請允許自己。",en:"You extend grace to others when they make mistakes. Please extend that same grace to yourself."},
+      {zh:"不喜歡現在的狀態，可以。但在那之前，先好好陪著自己。",en:"It's okay not to like where you are right now. But before anything else — stay with yourself gently."},
+      {zh:"你比自己以為的更值得被溫柔對待。",en:"You deserve more tenderness than you've been allowing yourself to receive."},
+      {zh:"接受自己的不完美，不是認輸，是真正認識自己的開始。",en:"Accepting your imperfections isn't surrender — it's the beginning of truly knowing yourself."},
+      {zh:"你的存在不需要被任何人證明。",en:"Your existence doesn't need anyone's proof or permission."},
+      {zh:"你感覺到了什麼，就讓它在這裡，不需要趕它走。",en:"Whatever you're feeling right now — let it be here. You don't have to rush it away."},
+      {zh:"不需要把所有感受都搞懂，允許自己「還不知道」。",en:"You don't have to understand everything you feel. It's okay to say 'I don't know yet.'"},
+      {zh:"今天的你，已經做了你能做的，這就夠了。",en:"Today, you did what you could. That is enough."},
+      {zh:"你曾經以為過不去的事，你都過去了。",en:"Every thing you once thought you couldn't survive — you got through all of it."},
+      {zh:"那個一直被你壓下去的念頭，也許正在等你給它一個機會。",en:"That thought you keep pushing down — maybe it's been waiting for you to give it a chance."},
+      {zh:"改變不一定有人陪你，但你可以陪著自己。",en:"Change doesn't always come with company. But you can be there for yourself."},
+      {zh:"你不需要被所有人理解，才能走你自己的路。",en:"You don't need everyone to understand you in order to walk your own path."},
+      {zh:"害怕可以有，行動也可以有，兩件事可以同時存在。",en:"Fear and action can coexist. You don't have to wait until the fear is gone."},
+      {zh:"你的勇氣不一定看得見，但它一直在。",en:"Your courage isn't always visible — but it has always been there."},
+      {zh:"你值得一段不需要時時刻刻證明自己的關係。",en:"You deserve a relationship where you don't have to constantly prove your worth."},
+      {zh:"你付出的那些，也值得有人回應。",en:"What you give deserves to be received and returned."},
+      {zh:"有人珍惜你，你也可以學著珍惜自己。",en:"Someone out there treasures you. You can learn to treasure yourself too."},
+      {zh:"被需要很好，但你不只是因為有用才值得被愛。",en:"Being needed feels good — but you are worthy of love beyond what you do for others."},
+      {zh:"你值得的愛，是讓你感到安心的那種，不是讓你焦慮的那種。",en:"The love you deserve is the kind that brings you peace — not the kind that keeps you anxious."},
+      {zh:"你可以對自己溫柔，就像你對你最愛的人那樣。",en:"You can be as gentle with yourself as you are with the people you love most."},
+      {zh:"你不需要完美，才能被真正愛你的人所愛。",en:"You don't need to be perfect to be loved by the people who truly love you."},
+      {zh:"你愛人的方式那麼真，你也值得被同樣真實地愛。",en:"The way you love others is so genuine — you deserve to be loved just as genuinely in return."},
+      {zh:"你走的這條路，沒有人走過，這是你的，不是錯的。",en:"No one has walked this exact path before you. It's yours — and that doesn't make it wrong."},
+      {zh:"你的感受方式，你的思考方式，沒有人可以複製。",en:"The way you feel, the way you think — no one else can replicate that."},
+      {zh:"你以為平凡的那些，對某些人來說是光。",en:"What feels ordinary to you can be someone else's light."},
+      {zh:"你不需要跟別人一樣快，你的速度就是你的節奏。",en:"You don't need to move at anyone else's pace. Your rhythm is the right one for you."},
+      {zh:"你身上有一些東西，是你自己還沒有發現的寶。",en:"There is something in you that you haven't discovered yet — and it's worth finding."},
+      {zh:"你看世界的方式，有時候連你自己都還沒意識到有多珍貴。",en:"The way you see the world is more precious than you've allowed yourself to realize."},
+      {zh:"那個對自己說「我不行」的聲音，不一定是真的。",en:"That voice telling you 'I can't do this' — it isn't necessarily telling the truth."},
+      {zh:"你做過的決定，每一個都是當時最好的你所能做的選擇。",en:"Every decision you've made was the best choice the version of you at that time could make."},
+      {zh:"你的直覺帶你到了現在，請繼續相信它。",en:"Your intuition brought you to where you are now. Keep trusting it."},
+      {zh:"那些你以為自己做不到的事，你已經默默做了很多。",en:"So many things you thought you couldn't do — you've quietly done them already."},
+      {zh:"你值得有一個讓你覺得安心的地方，那個地方可以是你自己。",en:"You deserve a place that feels safe — and that place can be yourself."},
+      {zh:"你的邊界是合理的，不需要為它道歉。",en:"Your boundaries are reasonable. You don't have to apologize for having them."},
+      {zh:"你不需要把所有人都照顧好，才能照顧自己。",en:"You don't have to take care of everyone else before you're allowed to take care of yourself."},
+      {zh:"安定感不是找到的，是你一點一點給自己建造的。",en:"A sense of safety isn't something you find — it's something you build for yourself, slowly."},
+      {zh:"你現在感到疲憊，是因為你承擔了很多，讓自己休息一下。",en:"The tiredness you feel is because you've been carrying so much. Let yourself rest."},
+      {zh:"那些你扛著的，你可以先放下來，喘一口氣。",en:"What you've been carrying — you can set it down for a moment and breathe."},
+      {zh:"那個讓你心裡不舒服的感覺，是在告訴你一些事情。",en:"That uneasy feeling inside you is trying to tell you something worth listening to."},
+      {zh:"你知道的比你以為的多，靜下來，你會聽到。",en:"You know more than you think. Get quiet enough, and you'll hear it."},
+      {zh:"你不需要把每個直覺都解釋給別人聽，你只需要聽見它。",en:"You don't need to justify every intuition to others. You just need to hear it yourself."},
+      {zh:"有時候你的身體比你的腦袋更早知道答案。",en:"Sometimes your body knows the answer before your mind catches up."},
+      {zh:"你的感受不需要被任何人驗證，才算是真實的。",en:"Your feelings don't need anyone's validation to be real."},
+      {zh:"放慢一點，讓自己的聲音有機會浮出來。",en:"Slow down a little — give your own voice a chance to rise."},
+      {zh:"你的直覺不是障礙，是導航。",en:"Your intuition isn't an obstacle. It's your compass."},
+      {zh:"你那個還沒完成的想法，不需要等到完美才值得被開始。",en:"That unfinished idea of yours doesn't need to be perfect before it's worth starting."},
+      {zh:"你創造的東西，帶著只有你才有的溫度。",en:"What you create carries a warmth that only you can give it."},
+      {zh:"不知道怎麼做沒關係，先動手，方向會在過程中出現。",en:"Not knowing how is okay. Start anyway — the direction will emerge as you go."},
+      {zh:"那個「只是想試試看」的念頭，有時候會帶你去很遠的地方。",en:"That 'just want to try' thought — sometimes it takes you further than you imagined."},
+      {zh:"你做的事情不需要讓所有人懂，只需要讓你自己感到真實。",en:"What you do doesn't need to make sense to everyone — it just needs to feel true to you."},
+      {zh:"創作是你跟自己對話的方式之一，不管形式是什麼。",en:"Creating is one of the ways you have a conversation with yourself — whatever form it takes."},
+      {zh:"你留下的東西，不管多小，都是這個世界上獨一無二的印記。",en:"Whatever you leave behind — however small — is a mark on this world that no one else could make."},
+      {zh:"你可以放下那件事了，它不再需要你繼續扛著。",en:"You can let that go now. It doesn't need you to keep carrying it."},
+      {zh:"原諒自己，不是忘記，是讓自己可以繼續走。",en:"Forgiving yourself isn't forgetting — it's giving yourself permission to keep moving."},
+      {zh:"有些事情放下了，才有空間裝新的東西進來。",en:"Some things need to be released before there's room for something new to arrive."},
+      {zh:"你已經走過了很多，那些經歷讓你的腳更穩。",en:"You've been through so much — and all of it has made your footing steadier."},
+      {zh:"你屬於這個世界，這個世界也屬於你。",en:"You belong to this world, and this world belongs to you."},
+      {zh:"你的身體是你的家，它一直在支撐著你。",en:"Your body is your home — and it has been holding you up all along."},
+      {zh:"就算周圍在動盪，你內心的根基是屬於你的。",en:"Even when everything around you shifts, the ground within you is yours to keep."},
+      {zh:"你的情感是你的力量，不是你的弱點。",en:"Your emotions are your strength, not your weakness."},
+      {zh:"你有感受，你有渴望，這都是活著最真實的樣子。",en:"You feel deeply, you long for things — that is what being truly alive looks like."},
+      {zh:"允許自己去享受，去感受，去流動。",en:"Allow yourself to enjoy, to feel, to move with the flow of life."},
+      {zh:"你的創造力不需要被任何框架定義。",en:"Your creativity doesn't need to be defined by any framework."},
+      {zh:"你值得去追求那些讓你感到活著的事物。",en:"You deserve to pursue the things that make you feel truly alive."},
+      {zh:"你有能力感受喜悅，你也值得去接收它。",en:"You are capable of feeling joy — and you deserve to let it in."},
+      {zh:"你的柔軟不是脆弱，是你最真實的部分。",en:"Your softness isn't weakness — it's the most authentic part of you."},
+      {zh:"你有能力決定自己的方向，這個力量一直都在你身上。",en:"You have the power to choose your own direction — that power has always been yours."},
+      {zh:"你有能力影響自己的生命，一個選擇、一個行動、一步一步來。",en:"You have the power to shape your own life — one choice, one step at a time."},
+      {zh:"你不需要縮著自己來配合別人的舒適，你有權利佔滿屬於你的空間。",en:"You don't need to make yourself smaller for anyone else's comfort. You have every right to take up your space."},
+      {zh:"你的自信不需要別人的許可，它是你自己給自己的。",en:"Your confidence doesn't need anyone's permission — it's something you give to yourself."},
+      {zh:"你可以說不，你可以說是，你的選擇是你的。",en:"You can say no. You can say yes. Your choices belong to you."},
+      {zh:"那個想要站起來的你，值得被支持，尤其是被你自己。",en:"The part of you that wants to rise deserves support — especially from yourself."},
+      {zh:"你的心很大，大到裝得下別人，也請記得留一塊給自己。",en:"Your heart is big enough to hold so many others — please remember to save a piece of it for yourself."},
+      {zh:"你向別人打開過心，現在試著也對自己打開一次。",en:"You've opened your heart to others — now try opening it to yourself, just once."},
+      {zh:"你付出的愛不會消失，它會回來，以各種形式。",en:"The love you give doesn't disappear — it finds its way back to you, in many forms."},
+      {zh:"你不需要完美地去愛，真實地去愛就夠了。",en:"You don't need to love perfectly — loving honestly is enough."},
+      {zh:"你的溫柔是這個世界需要的，包括你自己也需要。",en:"Your gentleness is something this world needs — and so do you."},
+      {zh:"連結從自己開始，當你跟自己在一起，你就不孤單。",en:"Connection begins with yourself — when you are with yourself, you are never truly alone."},
+      {zh:"你的聲音值得被聽見，先從你自己開始聽見它。",en:"Your voice deserves to be heard — start by hearing it yourself."},
+      {zh:"你說出來的話，可以改變你和別人的世界。",en:"The words you speak have the power to change your world and someone else's."},
+      {zh:"你的沉默有時候是保護，但你的聲音也是力量。",en:"Your silence is sometimes protection — but your voice is also power."},
+      {zh:"你的感受值得被表達，不只是藏在心裡。",en:"What you feel deserves to be expressed — not just kept quietly inside."},
+      {zh:"你比你以為的更能看清楚事情的本質。",en:"You see through things more clearly than you give yourself credit for."},
+      {zh:"那個你一直感覺到但說不出來的，是你的智慧在說話。",en:"That thing you keep sensing but can't quite put into words — that is your wisdom speaking."},
+      {zh:"你的直覺是累積了很久的智慧，請相信它。",en:"Your intuition is wisdom gathered over a lifetime — please trust it."},
+      {zh:"你的內在視野比外在的雜音更值得被聽從。",en:"Your inner vision is more worth following than the noise outside."},
+      {zh:"當你放下需要控制一切的力氣，你會感覺到一種更大的安靜。",en:"When you release the need to control everything, you will find a deeper kind of stillness."},
+    ];
+
+    let di = 0;
+    const dots = [document.getElementById('d1'), document.getElementById('d2'), document.getElementById('d3')];
+    setInterval(() => { dots.forEach(d => d.classList.remove('active')); dots[di].classList.add('active'); di = (di + 1) % 3; }, 1400);
+
+    const cover    = document.getElementById('cover');
+    const result   = document.getElementById('result');
+    const againBtn = document.getElementById('againBtn');
+    let last = -1;
+
+    document.getElementById('card').addEventListener('click', () => {
+      if (cover.style.display === 'none') return;
+      let idx;
+      do { idx = Math.floor(Math.random() * cards.length); } while (idx === last && cards.length > 1);
+      last = idx;
+      document.getElementById('msgZh').textContent = cards[idx].zh;
+      document.getElementById('msgEn').textContent = cards[idx].en;
+      cover.style.display = 'none';
+      result.classList.add('visible');
+      againBtn.classList.add('show');
+    });
+
+    againBtn.addEventListener('click', () => {
+      result.classList.remove('visible');
+      againBtn.classList.remove('show');
+      cover.style.display = 'flex';
+    });
+
+    /* ── Hero carousel ── */
+    let slideIdx = 0;
+    const totalSlides = 3;
+    function goSlide(n) {
+      slideIdx = n;
+      document.getElementById('heroSlides').style.transform = `translateX(-${100/3 * n}%)`;
+      document.querySelectorAll('.cdot').forEach((d, i) => {
+        d.style.background = i === n ? 'var(--colorDark)' : 'var(--colorBorder)';
+      });
+    }
+    setInterval(() => goSlide((slideIdx + 1) % totalSlides), 4000);
+
+    /* ── Accordion / Tabs / Day switcher ── */
+    function toggleAccordion(header) {
+      const item = header.closest('.accordion-item');
+      const isOpen = item.classList.contains('open');
+      item.closest('.accordion').querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    function setDay(id, btn) {
+      document.querySelectorAll('.agenda-day').forEach(d => d.classList.remove('active'));
+      document.querySelectorAll('[onclick^="setDay"]').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    /* ── Force section heights to exactly one viewport ── */
+    function fitSections() {
+      const h = window.innerHeight;
+      document.querySelectorAll('section').forEach(s => {
+        s.style.height = h + 'px';
+        s.style.minHeight = h + 'px';
+        s.style.maxHeight = h + 'px';
+        s.style.overflow = 'hidden';
+        s.style.boxSizing = 'border-box';
+      });
+    }
+    fitSections();
+    window.addEventListener('resize', fitSections);
+
+    function setTab(btn, showSel, hideSel) {
+      document.querySelectorAll('[onclick^="setTab"]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll(showSel).forEach(el => el.style.display = 'grid');
+      document.querySelectorAll(hideSel).forEach(el => el.style.display = 'none');
+    }
+
+    /* ── Language Switcher ── */
+    const i18n = {
+      en: {
+        'nav.about':'About','nav.guides':'Benefit & Studies','nav.faq':'FAQ',
+        'hero.body':'Welcome to a space created for your journey.<br>Here, we offer a safe and supportive environment where you can slow down, reconnect, and be fully yourself. Whether you are seeking clarity, healing, or deeper meaning, you are gently guided and held every step of the way.<br><br>Through shared practices of love, awareness, and transformation, this space is here to support your growth, nurture your inner peace, and help you return to what feels true within you. You are not alone—this is a place where your path is honored, and your becoming is welcomed.',
+        'hero.cta':'Find A Session',
+        'about.heading':'About us',
+        'about.acc1.title':'Experience transformative healing circles',
+        'about.acc1.body':'Step into sacred circles guided by experienced practitioners. Discover how intentional community, shared ritual, and honest conversation can open pathways to profound healing.',
+        'about.acc2.title':'Learn practices for love and self-discovery',
+        'about.acc2.body':'Immersive sessions on the inner work that shapes our relationships. Understand how somatic healing, attachment patterns, and self-compassion create new possibilities for love in your life.',
+        'about.acc3.title':'Deepen your skills with workshops and certification',
+        'about.acc3.body':'Hands-on workshops led by experienced guides. Earn recognition that reflects your commitment to the healing path.<br><br><ul style="padding-left:20px;list-style:disc;display:flex;flex-direction:column;gap:6px;"><li>Healing fundamentals and certification</li><li>Somatic and breathwork deep dives</li><li>Small-group integration sessions</li><li>Community ceremony and ritual</li></ul><br><div style="display:flex;gap:12px;flex-wrap:wrap;"><button class="tab-btn active">Workshops</button><button class="tab-btn">Certifications</button></div>',
+        'about.acc4.title':'Connect with your soul tribe',
+        'about.acc4.body':'Meet fellow seekers, guides, and healers walking the same path. Find genuine belonging in our community spaces and carry those connections beyond the gathering.',
+        'about.acc5.title':'Why does each session feel different?',
+        'about.acc5.body':'Each session is shaped by your present state — your energy, emotions, and readiness on that particular day. Sound and Reiki respond to what is alive in you at that moment, so the experience naturally shifts each time. No two sessions are identical, and that variation is part of the practice itself.',
+        'about.acc6.title':'How is sound healing different from music?',
+        'about.acc6.body':'Music is experienced primarily through listening, often engaging memory, emotion, and thought. Sound healing works through frequency and resonance — tones are applied intentionally to invite the nervous system into stillness, not to entertain. The aim is presence rather than enjoyment.',
+        'about.acc7.title':'How often should I attend sessions?',
+        'about.acc7.body':'It depends on your rhythm. Some people benefit from regular weekly or bi-weekly sessions as an ongoing practice, while others come occasionally for a reset or during a period of transition. There is no single right answer — trust what your body and schedule need.',
+        'about.acc8.title':'Is it normal to feel emotional, and can this replace medical care?',
+        'about.acc8.body':'In a relaxed state, inner emotions may gently surface — this is natural and welcomed as part of the process. That said, sound healing and Reiki are experience-based practices focused on relaxation, awareness, and state alignment. They are not a substitute for medical care or diagnosis. For any health-related concerns, professional medical advice is always recommended.',
+        'sessions.label':'Our Sessions','sessions.heading':'Our Sessions','sessions.desc':'Personalized healing for body, mind and spirit.',
+        'sessions.sb.label':'聲療 Sound Bath','sessions.sb.t1':'1-on-1 Private · 60 min','sessions.sb.t1desc':'A private 60-min Tibetan singing bowl session to release tension and restore inner stillness.','sessions.sb.t2':'For Two · 60 min','sessions.sb.t2desc':'A shared 60-min sound bath for two — ideal for couples or close friends seeking calm together.',
+        'sessions.rsb.label':'靈氣聲療 Reiki & Sound Bath','sessions.rsb.t1':'60 min','sessions.rsb.t1desc':'Combines Reiki energy healing with singing bowl sound — balancing body, mind and spirit.','sessions.rsb.t2':'90 min','sessions.rsb.t2desc':'An extended session for deeper restoration — more space for energy work and integration.',
+        'sessions.reiki.label':'靈氣 Reiki','sessions.reiki.desc':'Available in-person or remotely.',
+        'sessions.home.label':'到府服務 Home Visit','sessions.home.desc':'Sound bath or Reiki brought to your space.',
+        'sessions.group.label':'團體課程 Group Session','sessions.group.desc':'Group sound bath for 3 or more.','sessions.cta':'Book a Session',
+        'benefit.heading':'Benefit & Studies',
+        'benefit.card1.badge':'Reiki','benefit.card1.title':'Energy Balance','benefit.card1.sub':'平衡穩定能量','benefit.card1.desc':'Reiki works gently with the body\'s subtle energy field, fostering a felt sense of wholeness and inner equilibrium.',
+        'benefit.card2.badge':'Singing Bowl','benefit.card2.title':'Deep Relaxation','benefit.card2.sub':'深度放鬆','benefit.card2.desc':'The resonant tones of singing bowls create an immersive soundscape, inviting a sense of deep stillness and ease.',
+        'benefit.card3.badge':'Reiki','benefit.card3.title':'Grounding & Support','benefit.card3.sub':'安定與支持','benefit.card3.desc':'Reiki sessions offer a calm, nurturing space for you to slow down, pause, and reconnect with a sense of inner stability.',
+        'benefit.card4.badge':'Singing Bowl','benefit.card4.title':'Mindful Stillness','benefit.card4.sub':'靜心安定','benefit.card4.desc':'Many who practice sound meditation describe experiencing a quieter mind and a renewed sense of inner calm and presence.',
+        'benefit.card5.badge':'Reiki + Bowl','benefit.card5.title':'Evening Rest','benefit.card5.sub':'夜間靜息','benefit.card5.desc':'The combination of sound and energy work can become a meaningful part of your wind-down ritual, gently supporting the body\'s natural readiness for rest.',
+        'benefit.card6.badge':'Reiki','benefit.card6.title':'Inner Renewal','benefit.card6.sub':'內在更新','benefit.card6.desc':'Reiki encourages a state of deep stillness, creating space for the body and mind to naturally settle, restore, and renew.',
+        'reminders.label':'Gentle Reminders','reminders.heading':'A Few Things to Know',
+        'reminders.item1.title':'Not a Medical Substitute','reminders.item1.body':'Sound healing and Reiki are not substitutes for medical care. If you are currently receiving medical treatment, please consult your doctor first — and we warmly invite you to share your situation with us before booking.',
+        'reminders.item2.title':'Open to Everyone','reminders.item2.body':'Our services are not affiliated with any religion or belief system. Everyone is warmly welcomed. Group sessions are announced periodically on our social media — follow us to stay updated.',
+        'reminders.item3.title':'What to Wear','reminders.item3.body':'We recommend loose, comfortable clothing so your body can fully relax. Avoid tight or restrictive outfits. You may also bring a light blanket or eye mask if you wish.',
+        'reminders.item4.title':'After Your Session','reminders.item4.body':'Drink plenty of water afterward and give your body time to integrate. Feeling tired or emotional is completely natural — allow yourself to rest and receive with gentleness.',
+        'reminders.item5.title':'Your Feedback Matters','reminders.item5.body':'We warmly welcome your thoughts after each session. Your sharing helps us grow and serve you better. Feel free to reach out anytime.',
+        'reminders.item6.title':'Special Health Conditions','reminders.item6.body':'If you are pregnant, have a heart condition, or any other health concern, please let us know when booking so we can best support and care for you.',
+        'footer.contact':'Contact Us','footer.guides':'Guides','footer.code':'Code of Conduct','footer.privacy':'Privacy Policy','footer.copy':'© 2026 Fate Love Heal. All rights reserved.',
+      },
+      zh: {
+        'nav.about':'抽一張牌','nav.guides':'研究與效益','nav.faq':'常見問題',
+        'hero.body':'這裡是一個為你的旅程而創造的空間。<br>我們提供安全、充滿支持的環境，讓你可以放慢腳步、重新與自己連結，做最真實的自己。無論你正在尋找清晰、療癒或更深的意義，你將在每一步都被溫柔地引導與承接。<br><br>透過愛、覺察與轉化的共同修練，這個空間支持你的成長、滋養你的內在平靜，幫助你回到內心最真實的感受。你並不孤單——這裡歡迎你的到來，也歡迎你的蛻變。',
+        'hero.cta':'預約課程',
+        'about.heading':'常見問題',
+        'about.acc1.title':'聲療與靈氣是什麼？',
+        'about.acc1.body':'聲療透過聲音與頻率的流動，引導身心進入更深層的放鬆與覺察；靈氣則是一種溫和的能量工作方式，支持整體狀態回到平衡。',
+        'about.acc2.title':'聲療與靈氣的核心價值是什麼？',
+        'about.acc2.body':'透過細緻的感知，讓身心從外在運作，轉向內在整合與平衡。這是一種回到當下、回到自己、回到生命本質的修練，讓我們在日常生活中也能帶著更深的覺察與連結。',
+        'about.acc3.title':'這樣的體驗適合什麼樣的人？',
+        'about.acc3.body':'適合那些尋求安靜空間及與內在重新連結的人，也適合那些在高度專注、快節奏的環境中尋求穩定及放鬆的人。',
+        'about.acc4.title':'體驗中出現情緒或畫面是正常的嗎？',
+        'about.acc4.body':'是的，這是內在覺察與連結的一部分，每個人的感受皆不同。這些情緒或畫面可能是過去的回憶、當下的感受，或是潛意識的訊息。重要的是以開放和接納的態度對待這些經驗，讓它們自然流動，不試圖控制或評價它們。',
+        'about.acc5.title':'為什麼每次療程的感受都不同？',
+        'about.acc5.body':'每次療程都反映你當下的狀態——當天的能量、情緒與開放程度。聲音與靈氣會回應你此刻內在的流動，因此每次體驗自然因時而異。',
+        'about.acc6.title':'聲音療癒和音樂有什麼不同？',
+        'about.acc6.body':'音樂主要透過聆聽體驗，可能喚起記憶、情感連結與想法。聲音療癒則透過頻率與共振運作，從Beta 波進入Alpha ，體驗深層的放鬆或意識放空狀態。',
+        'about.acc7.title':'我應該多久參加一次？',
+        'about.acc7.body':'這取決於你自己。有些人從每週或每兩週的規律清理和放鬆中獲益，另一些人則在需要重置或過渡期時偶爾前來。沒有唯一的答案——信任你的身體與生活節奏所需。',
+        'about.acc8.title':'這可以取代醫療嗎？',
+        'about.acc8.body':'在放鬆的狀態下，你可能感到比較舒服、穩定、平靜。但聲音療癒與靈氣是以放鬆、覺察與狀態調整為核心，並非醫療或診斷的替代品。若有任何疾病相關問題，請諮詢專業醫療人員。',
+        'sessions.label':'我們的服務','sessions.heading':'我們的課程','sessions.desc':'為已準備好重新與自己連結的你打造的旅程。',
+        'sessions.sb.label':'聲療 Sound Bath','sessions.sb.t1':'一對一 · 60 分鐘','sessions.sb.t1desc':'單人 60 分鐘聲療體驗，釋放身心緊繃，回歸內在寧靜。','sessions.sb.t2':'雙人 · 60 分鐘','sessions.sb.t2desc':'雙人共享的 60 分鐘聲療體驗，適合伴侶、家人或摯友一同感受平靜。',
+        'sessions.rsb.label':'靈氣聲療 Reiki & Sound Bath','sessions.rsb.t1':'60 分鐘','sessions.rsb.t1desc':'結合靈氣能量療癒與聲療，平衡身、心、靈。','sessions.rsb.t2':'90 分鐘','sessions.rsb.t2desc':'延伸版療程，提供更深層的修復空間，讓能量平衡與連結更加深沉完整。',
+        'sessions.reiki.label':'靈氣 Reiki','sessions.reiki.desc':'提供遠距或面對面療程。',
+        'sessions.home.label':'到府服務 Home Visit','sessions.home.desc':'聲療或靈氣療程可到府提供。',
+        'sessions.group.label':'團體課程 Group Session','sessions.group.desc':'3 人以上的團體聲療。','sessions.cta':'預約課程',
+        'benefit.heading':'研究與效益',
+        'benefit.card1.badge':'靈氣','benefit.card1.title':'平衡穩定能量','benefit.card1.sub':'Energy Balance','benefit.card1.desc':'靈氣以溫和方式與身體的能量場互動，帶來整體放鬆與內在平衡穩定的體驗。',
+        'benefit.card2.badge':'頌缽','benefit.card2.title':'深度放鬆','benefit.card2.sub':'Deep Relaxation','benefit.card2.desc':'頌缽豐富的共振音色營造沉浸式聲音環境，引導人進入深度放鬆的靜心體驗。',
+        'benefit.card3.badge':'靈氣','benefit.card3.title':'安定與支持','benefit.card3.sub':'Grounding & Support','benefit.card3.desc':'靈氣療程提供溫柔而滋養的空間，讓您暫時放下外在紛擾，找回內在的安定與支持。',
+        'benefit.card4.badge':'頌缽','benefit.card4.title':'靜心安定','benefit.card4.sub':'Mindful Stillness','benefit.card4.desc':'許多聲音冥想的體驗者分享，練習過後感受到思緒趨於平靜，以及一種由內而外的輕盈感。',
+        'benefit.card5.badge':'靈氣＋頌缽','benefit.card5.title':'夜間靜息','benefit.card5.sub':'Evening Rest','benefit.card5.desc':'聲音與靈氣能量體驗的結合，可成為夜間放鬆儀式的一部分，溫柔地陪伴身心自然地過渡至休息狀態。',
+        'benefit.card6.badge':'靈氣','benefit.card6.title':'內在更新','benefit.card6.sub':'Inner Renewal','benefit.card6.desc':'靈氣引導深度靜謐的狀態，為身心創造空間，自然地沉澱、放鬆與自我更新。',
+        'reminders.label':'貼心提醒','reminders.heading':'貼心提醒',
+        'reminders.item1.title':'關於醫療','reminders.item1.body':'聲療及靈氣不能替代正規醫療。若您目前正在接受醫療治療，請諮詢您的主治醫生。同時在您預約課程前，請先將您的狀況告知我們，與我們聊聊。',
+        'reminders.item2.title':'開放給所有人','reminders.item2.body':'我們的服務不屬於任何特定的宗教信仰，我們歡迎所有人一起來參與。一般團體課程將不定時發布於我們的社群媒體，歡迎追蹤關注。',
+        'reminders.item3.title':'穿著建議','reminders.item3.body':'建議穿著舒適寬鬆的衣物前來。',
+        'reminders.item4.title':'療程後的照顧','reminders.item4.body':'多補充水分，早點休息。',
+        'reminders.item5.title':'歡迎給予回饋','reminders.item5.body':'課程後歡迎給我們您寶貴的建議，您的分享是我們持續進步的動力。',
+        'reminders.item6.title':'特殊健康狀況','reminders.item6.body':'若您在孕期、或有心臟疾病、安裝過心臟支架或鋼釘，請於預約時事先告知，讓我們能為您設計合適的課程內容。',
+        'footer.contact':'聯絡我們','footer.about':'關於我們','footer.code':'行為準則','footer.privacy':'隱私政策','footer.copy':'© 2026 Fate Love Heal 版權所有。',
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.getElementById('langLabel').textContent = lang === 'zh' ? '中文' : 'EN';
+      document.querySelectorAll('[data-lang-opt]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.langOpt === lang);
+      });
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (i18n[lang] && i18n[lang][key] !== undefined) el.textContent = i18n[lang][key];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.dataset.i18nHtml;
+        if (i18n[lang] && i18n[lang][key] !== undefined) el.innerHTML = i18n[lang][key];
+      });
+      document.getElementById('langMenu').classList.remove('open');
+      document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
+    }
+
+    function toggleLangMenu(e) {
+      e.stopPropagation();
+      document.getElementById('langMenu').classList.toggle('open');
+    }
+    document.addEventListener('click', () => {
+      const m = document.getElementById('langMenu');
+      if (m) m.classList.remove('open');
+    });
+
+    /* Smooth scroll to #passes for all anchor links pointing there */
+    document.querySelectorAll('a[href="#passes"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        document.getElementById('passes').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+
+  <!-- Background music -->
+  <audio id="bgMusic" src="https://archive.org/download/relaxing-music-with-the-sound-of-nature-bamboo-water-fountain/relaxing-bamboo-music-with-water-sounds-relaxing-music-for-deep-sleep.mp3" loop preload="none"></audio>
+
+  <!-- Music toggle button -->
+  <button id="musicBtn" aria-label="Toggle music" style="
+    position:fixed;bottom:28px;right:28px;z-index:9999;
+    width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;
+    background:rgba(42,24,14,0.82);backdrop-filter:blur(8px);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 12px rgba(0,0,0,0.28);
+    transition:transform 0.2s,background 0.2s;
+  ">
+    <!-- Speaker icon (playing state) -->
+    <svg id="iconOn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D3AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+    </svg>
+    <!-- Muted icon (default) -->
+    <svg id="iconOff" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9a7060" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <line x1="23" y1="9" x2="17" y2="15"/>
+      <line x1="17" y1="9" x2="23" y2="15"/>
+    </svg>
+  </button>
+
+  <script>
+    const audio = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicBtn');
+    const iconOn = document.getElementById('iconOn');
+    const iconOff = document.getElementById('iconOff');
+    let playing = false;
+
+    function startMusic() {
+      if (playing) return;
+      audio.play().then(() => {
+        playing = true;
+        iconOn.style.display = 'block';
+        iconOff.style.display = 'none';
+        btn.style.background = 'rgba(42,24,14,0.92)';
+      }).catch(() => {});
+    }
+
+    /* Auto-start on first user interaction */
+    ['click','scroll','touchstart','keydown'].forEach(evt => {
+      document.addEventListener(evt, function onFirst() {
+        startMusic();
+        document.removeEventListener(evt, onFirst);
+      }, { once: true });
+    });
+
+    btn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      if (!playing) {
+        startMusic();
+      } else {
+        audio.pause();
+        playing = false;
+        iconOn.style.display = 'none';
+        iconOff.style.display = 'block';
+        btn.style.background = 'rgba(42,24,14,0.82)';
+      }
+    });
+
+    btn.addEventListener('mouseover', () => { btn.style.transform = 'scale(1.1)'; });
+    btn.addEventListener('mouseout', () => { btn.style.transform = 'scale(1)'; });
+  </script>
+</body>
+</html>

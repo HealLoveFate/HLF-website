@@ -1,0 +1,279 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#f2bb92"/>
+      <stop offset="100%" stop-color="#e0aa80"/>
+    </radialGradient>
+    <radialGradient id="glowR" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF4444" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#CC0000" stop-opacity="0.7"/>
+    </radialGradient>
+    <radialGradient id="glowO" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF9933" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#FF6600" stop-opacity="0.7"/>
+    </radialGradient>
+    <radialGradient id="glowY" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFE033" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#FFAA00" stop-opacity="0.7"/>
+    </radialGradient>
+    <radialGradient id="glowG" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#44DD66" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#009933" stop-opacity="0.75"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#33BBFF" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0077BB" stop-opacity="0.7"/>
+    </radialGradient>
+    <radialGradient id="glowI" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8844DD" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#5500AA" stop-opacity="0.75"/>
+    </radialGradient>
+    <radialGradient id="glowV" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#DD77FF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#9900CC" stop-opacity="0.8"/>
+    </radialGradient>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="600" fill="url(#bg)"/>
+
+  <!-- Flower of Life - outer border circles -->
+  <circle cx="300" cy="285" r="272" fill="none" stroke="#c9920a" stroke-width="1.8" opacity="0.3"/>
+  <circle cx="300" cy="285" r="255" fill="none" stroke="#D3AF37" stroke-width="0.7" opacity="0.2"/>
+
+  <!-- Flower of Life - inner ring (r=82) centered at 300,285 -->
+  <g fill="none" stroke="#D3AF37" stroke-width="1.3" opacity="0.4">
+    <circle cx="300" cy="285" r="82"/>
+    <circle cx="300" cy="203" r="82"/>
+    <circle cx="371" cy="244" r="82"/>
+    <circle cx="371" cy="326" r="82"/>
+    <circle cx="300" cy="367" r="82"/>
+    <circle cx="229" cy="326" r="82"/>
+    <circle cx="229" cy="244" r="82"/>
+  </g>
+
+  <!-- Flower of Life - second ring -->
+  <g fill="none" stroke="#D3AF37" stroke-width="0.8" opacity="0.2">
+    <circle cx="300" cy="121" r="82"/>
+    <circle cx="371" cy="162" r="82"/>
+    <circle cx="442" cy="203" r="82"/>
+    <circle cx="442" cy="285" r="82"/>
+    <circle cx="442" cy="367" r="82"/>
+    <circle cx="371" cy="408" r="82"/>
+    <circle cx="300" cy="449" r="82"/>
+    <circle cx="229" cy="408" r="82"/>
+    <circle cx="158" cy="367" r="82"/>
+    <circle cx="158" cy="285" r="82"/>
+    <circle cx="158" cy="203" r="82"/>
+    <circle cx="229" cy="162" r="82"/>
+  </g>
+
+  <!-- ROOTS — Root Chakra Red -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M291 508 C270 520 242 532 210 540" stroke="#DD2222" stroke-width="4.5" opacity="0.85"/>
+    <path d="M291 508 C276 526 260 542 242 556" stroke="#CC1111" stroke-width="3.5" opacity="0.8"/>
+    <path d="M300 514 C298 532 294 550 290 564" stroke="#BB1111" stroke-width="3" opacity="0.75"/>
+    <path d="M309 508 C330 520 358 532 390 540" stroke="#DD2222" stroke-width="4.5" opacity="0.85"/>
+    <path d="M309 508 C324 526 340 542 358 556" stroke="#CC1111" stroke-width="3.5" opacity="0.8"/>
+    <path d="M210 540 C188 546 165 552 144 556" stroke="#AA0000" stroke-width="2.5" opacity="0.65"/>
+    <path d="M242 556 C230 564 216 570 202 574" stroke="#AA0000" stroke-width="2" opacity="0.6"/>
+    <path d="M290 564 C285 572 280 578 276 584" stroke="#880000" stroke-width="1.8" opacity="0.55"/>
+    <path d="M390 540 C412 546 435 552 456 556" stroke="#AA0000" stroke-width="2.5" opacity="0.65"/>
+    <path d="M358 556 C370 564 384 570 398 574" stroke="#AA0000" stroke-width="2" opacity="0.6"/>
+    <path d="M144 556 C132 560 120 564 108 566" stroke="#880000" stroke-width="1.5" opacity="0.5"/>
+    <path d="M202 574 C194 579 184 584 174 587" stroke="#880000" stroke-width="1.5" opacity="0.5"/>
+    <path d="M456 556 C468 560 480 564 492 566" stroke="#880000" stroke-width="1.5" opacity="0.5"/>
+    <path d="M398 574 C406 579 416 584 426 587" stroke="#880000" stroke-width="1.5" opacity="0.5"/>
+  </g>
+
+  <!-- TRUNK -->
+  <path d="M288 512 C282 480 280 452 284 425 C288 400 294 386 300 372 C306 386 312 400 316 425 C320 452 318 480 312 512Z"
+        fill="#3e2008" opacity="0.95"/>
+  <path d="M297 512 C293 480 292 452 295 428 C297 408 299 392 300 378"
+        stroke="#6b3a15" stroke-width="2.5" fill="none" opacity="0.45" stroke-linecap="round"/>
+
+  <!-- BRANCHES -->
+  <g fill="none" stroke="#3e2008" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Lower branches -->
+    <path d="M288 445 C264 428 238 416 208 408" stroke-width="7"/>
+    <path d="M312 445 C336 428 362 416 392 408" stroke-width="7"/>
+    <path d="M286 418 C258 400 230 386 200 375" stroke-width="5.5"/>
+    <path d="M314 418 C342 400 370 386 400 375" stroke-width="5.5"/>
+    <!-- Mid branches -->
+    <path d="M290 395 C268 374 246 355 222 338" stroke-width="4"/>
+    <path d="M310 395 C332 374 354 355 378 338" stroke-width="4"/>
+    <path d="M208 408 C182 398 158 388 134 380" stroke-width="3.5"/>
+    <path d="M208 408 C198 386 194 364 193 342" stroke-width="3"/>
+    <path d="M392 408 C418 398 442 388 466 380" stroke-width="3.5"/>
+    <path d="M392 408 C402 386 406 364 407 342" stroke-width="3"/>
+    <path d="M200 375 C175 362 150 350 126 340" stroke-width="3"/>
+    <path d="M200 375 C190 350 186 326 185 302" stroke-width="2.5"/>
+    <path d="M400 375 C425 362 450 350 474 340" stroke-width="3"/>
+    <path d="M400 375 C410 350 414 326 415 302" stroke-width="2.5"/>
+    <!-- Upper branches -->
+    <path d="M222 338 C200 318 178 300 155 283" stroke-width="2.5"/>
+    <path d="M222 338 C210 312 205 286 204 260" stroke-width="2.2"/>
+    <path d="M378 338 C400 318 422 300 445 283" stroke-width="2.5"/>
+    <path d="M378 338 C390 312 395 286 396 260" stroke-width="2.2"/>
+    <!-- Central branches -->
+    <path d="M294 390 C288 360 284 330 282 298" stroke-width="3"/>
+    <path d="M306 390 C312 360 316 330 318 298" stroke-width="3"/>
+    <path d="M300 385 C300 354 300 322 300 290" stroke-width="2.5"/>
+    <!-- Fine upper branches -->
+    <path d="M282 298 C272 272 263 248 256 224" stroke-width="1.8"/>
+    <path d="M282 298 C276 272 272 248 271 222" stroke-width="1.8"/>
+    <path d="M318 298 C328 272 337 248 344 224" stroke-width="1.8"/>
+    <path d="M318 298 C324 272 328 248 329 222" stroke-width="1.8"/>
+    <path d="M300 290 C296 262 292 234 290 206" stroke-width="1.8"/>
+    <path d="M300 290 C304 262 308 234 310 206" stroke-width="1.8"/>
+    <path d="M300 290 C300 262 300 234 300 205" stroke-width="1.5"/>
+    <!-- Top fine -->
+    <path d="M271 222 C262 200 255 179 252 158" stroke-width="1.3"/>
+    <path d="M256 224 C248 202 242 180 240 158" stroke-width="1.2"/>
+    <path d="M290 206 C286 183 282 160 280 138" stroke-width="1.3"/>
+    <path d="M300 205 C300 182 300 160 300 137" stroke-width="1.3"/>
+    <path d="M310 206 C314 183 318 160 320 138" stroke-width="1.3"/>
+    <path d="M329 222 C338 200 345 179 348 158" stroke-width="1.3"/>
+    <path d="M344 224 C352 202 358 180 360 158" stroke-width="1.2"/>
+    <path d="M204 260 C193 238 184 215 178 192" stroke-width="1.5"/>
+    <path d="M185 302 C180 278 176 254 175 230" stroke-width="1.5"/>
+    <path d="M396 260 C407 238 416 215 422 192" stroke-width="1.5"/>
+    <path d="M415 302 C420 278 424 254 425 230" stroke-width="1.5"/>
+  </g>
+
+  <!-- CHAKRA LEAVES -->
+
+  <!-- 1. ROOT — Red — bottom canopy + root area -->
+  <g filter="url(#soft)">
+    <ellipse cx="206" cy="408" rx="32" ry="26" fill="url(#glowR)" opacity="0.88"/>
+    <ellipse cx="192" cy="392" rx="26" ry="20" fill="url(#glowR)" opacity="0.82"/>
+    <ellipse cx="218" cy="422" rx="22" ry="18" fill="#FF3333" opacity="0.75"/>
+    <ellipse cx="394" cy="408" rx="32" ry="26" fill="url(#glowR)" opacity="0.88"/>
+    <ellipse cx="408" cy="392" rx="26" ry="20" fill="url(#glowR)" opacity="0.82"/>
+    <ellipse cx="382" cy="422" rx="22" ry="18" fill="#FF3333" opacity="0.75"/>
+    <ellipse cx="300" cy="450" rx="28" ry="18" fill="url(#glowR)" opacity="0.7"/>
+  </g>
+
+  <!-- 2. SACRAL — Orange -->
+  <g filter="url(#soft)">
+    <ellipse cx="132" cy="380" rx="36" ry="28" fill="url(#glowO)" opacity="0.88"/>
+    <ellipse cx="150" cy="362" rx="30" ry="24" fill="#FF8822" opacity="0.82"/>
+    <ellipse cx="116" cy="364" rx="24" ry="19" fill="url(#glowO)" opacity="0.78"/>
+    <ellipse cx="468" cy="380" rx="36" ry="28" fill="url(#glowO)" opacity="0.88"/>
+    <ellipse cx="450" cy="362" rx="30" ry="24" fill="#FF8822" opacity="0.82"/>
+    <ellipse cx="484" cy="364" rx="24" ry="19" fill="url(#glowO)" opacity="0.78"/>
+    <ellipse cx="193" cy="342" rx="30" ry="24" fill="url(#glowO)" opacity="0.85"/>
+    <ellipse cx="407" cy="342" rx="30" ry="24" fill="url(#glowO)" opacity="0.85"/>
+    <ellipse cx="174" cy="356" rx="22" ry="17" fill="#FF7700" opacity="0.75"/>
+    <ellipse cx="426" cy="356" rx="22" ry="17" fill="#FF7700" opacity="0.75"/>
+  </g>
+
+  <!-- 3. SOLAR PLEXUS — Yellow -->
+  <g filter="url(#soft)">
+    <ellipse cx="124" cy="340" rx="34" ry="26" fill="url(#glowY)" opacity="0.88"/>
+    <ellipse cx="140" cy="320" rx="28" ry="22" fill="#FFD700" opacity="0.82"/>
+    <ellipse cx="110" cy="322" rx="22" ry="17" fill="url(#glowY)" opacity="0.78"/>
+    <ellipse cx="476" cy="340" rx="34" ry="26" fill="url(#glowY)" opacity="0.88"/>
+    <ellipse cx="460" cy="320" rx="28" ry="22" fill="#FFD700" opacity="0.82"/>
+    <ellipse cx="490" cy="322" rx="22" ry="17" fill="url(#glowY)" opacity="0.78"/>
+    <ellipse cx="183" cy="302" rx="30" ry="23" fill="url(#glowY)" opacity="0.85"/>
+    <ellipse cx="417" cy="302" rx="30" ry="23" fill="url(#glowY)" opacity="0.85"/>
+    <ellipse cx="165" cy="316" rx="22" ry="17" fill="#FFD700" opacity="0.78"/>
+    <ellipse cx="435" cy="316" rx="22" ry="17" fill="#FFD700" opacity="0.78"/>
+    <ellipse cx="198" cy="282" rx="24" ry="19" fill="url(#glowY)" opacity="0.8"/>
+    <ellipse cx="402" cy="282" rx="24" ry="19" fill="url(#glowY)" opacity="0.8"/>
+  </g>
+
+  <!-- 4. HEART — Green -->
+  <g filter="url(#soft)">
+    <ellipse cx="153" cy="283" rx="34" ry="27" fill="url(#glowG)" opacity="0.88"/>
+    <ellipse cx="136" cy="298" rx="26" ry="21" fill="#00AA44" opacity="0.82"/>
+    <ellipse cx="170" cy="265" rx="26" ry="20" fill="url(#glowG)" opacity="0.82"/>
+    <ellipse cx="447" cy="283" rx="34" ry="27" fill="url(#glowG)" opacity="0.88"/>
+    <ellipse cx="464" cy="298" rx="26" ry="21" fill="#00AA44" opacity="0.82"/>
+    <ellipse cx="430" cy="265" rx="26" ry="20" fill="url(#glowG)" opacity="0.82"/>
+    <ellipse cx="202" cy="260" rx="30" ry="24" fill="url(#glowG)" opacity="0.85"/>
+    <ellipse cx="398" cy="260" rx="30" ry="24" fill="url(#glowG)" opacity="0.85"/>
+    <ellipse cx="222" cy="242" rx="26" ry="20" fill="#00CC55" opacity="0.82"/>
+    <ellipse cx="378" cy="242" rx="26" ry="20" fill="#00CC55" opacity="0.82"/>
+    <ellipse cx="248" cy="258" rx="22" ry="18" fill="url(#glowG)" opacity="0.78"/>
+    <ellipse cx="352" cy="258" rx="22" ry="18" fill="url(#glowG)" opacity="0.78"/>
+    <ellipse cx="268" cy="245" rx="20" ry="16" fill="#00AA44" opacity="0.78"/>
+    <ellipse cx="332" cy="245" rx="20" ry="16" fill="#00AA44" opacity="0.78"/>
+  </g>
+
+  <!-- 5. THROAT — Blue -->
+  <g filter="url(#soft)">
+    <ellipse cx="255" cy="224" rx="30" ry="24" fill="url(#glowB)" opacity="0.88"/>
+    <ellipse cx="345" cy="224" rx="30" ry="24" fill="url(#glowB)" opacity="0.88"/>
+    <ellipse cx="272" cy="207" rx="26" ry="20" fill="#22AAEE" opacity="0.85"/>
+    <ellipse cx="328" cy="207" rx="26" ry="20" fill="#22AAEE" opacity="0.85"/>
+    <ellipse cx="300" cy="214" rx="28" ry="22" fill="url(#glowB)" opacity="0.82"/>
+    <ellipse cx="238" cy="237" rx="22" ry="17" fill="url(#glowB)" opacity="0.8"/>
+    <ellipse cx="362" cy="237" rx="22" ry="17" fill="url(#glowB)" opacity="0.8"/>
+    <ellipse cx="252" cy="194" rx="20" ry="15" fill="#33BBFF" opacity="0.78"/>
+    <ellipse cx="348" cy="194" rx="20" ry="15" fill="#33BBFF" opacity="0.78"/>
+    <ellipse cx="300" cy="196" rx="24" ry="18" fill="url(#glowB)" opacity="0.8"/>
+    <ellipse cx="175" cy="230" rx="26" ry="20" fill="url(#glowB)" opacity="0.82"/>
+    <ellipse cx="425" cy="230" rx="26" ry="20" fill="url(#glowB)" opacity="0.82"/>
+  </g>
+
+  <!-- 6. THIRD EYE — Indigo -->
+  <g filter="url(#soft)">
+    <ellipse cx="280" cy="165" rx="28" ry="22" fill="url(#glowI)" opacity="0.88"/>
+    <ellipse cx="320" cy="165" rx="28" ry="22" fill="url(#glowI)" opacity="0.88"/>
+    <ellipse cx="300" cy="158" rx="26" ry="20" fill="#7722CC" opacity="0.85"/>
+    <ellipse cx="262" cy="178" rx="22" ry="17" fill="url(#glowI)" opacity="0.82"/>
+    <ellipse cx="338" cy="178" rx="22" ry="17" fill="url(#glowI)" opacity="0.82"/>
+    <ellipse cx="300" cy="175" rx="22" ry="17" fill="url(#glowI)" opacity="0.8"/>
+    <ellipse cx="276" cy="148" rx="18" ry="14" fill="#8833DD" opacity="0.78"/>
+    <ellipse cx="324" cy="148" rx="18" ry="14" fill="#8833DD" opacity="0.78"/>
+    <ellipse cx="240" cy="158" rx="22" ry="17" fill="url(#glowI)" opacity="0.82"/>
+    <ellipse cx="360" cy="158" rx="22" ry="17" fill="url(#glowI)" opacity="0.82"/>
+  </g>
+
+  <!-- 7. CROWN — Violet -->
+  <g filter="url(#glow)">
+    <ellipse cx="300" cy="130" rx="32" ry="26" fill="url(#glowV)" opacity="0.92"/>
+    <ellipse cx="281" cy="140" rx="24" ry="19" fill="#BB44FF" opacity="0.88"/>
+    <ellipse cx="319" cy="140" rx="24" ry="19" fill="#BB44FF" opacity="0.88"/>
+    <ellipse cx="300" cy="116" rx="26" ry="20" fill="#CC55FF" opacity="0.88"/>
+    <ellipse cx="284" cy="124" rx="18" ry="14" fill="#DD77FF" opacity="0.85"/>
+    <ellipse cx="316" cy="124" rx="18" ry="14" fill="#DD77FF" opacity="0.85"/>
+    <ellipse cx="300" cy="104" rx="18" ry="13" fill="#EE88FF" opacity="0.85"/>
+    <ellipse cx="291" cy="110" rx="12" ry="10" fill="#FFAAFF" opacity="0.82"/>
+    <ellipse cx="309" cy="110" rx="12" ry="10" fill="#FFAAFF" opacity="0.82"/>
+    <ellipse cx="300" cy="93" rx="14" ry="10" fill="#FFBBFF" opacity="0.85"/>
+    <ellipse cx="300" cy="83" rx="10" ry="8" fill="#FFCCFF" opacity="0.88"/>
+    <ellipse cx="300" cy="74" rx="7" ry="6" fill="#FFEEFF" opacity="0.9"/>
+  </g>
+
+  <!-- Gold sparkle dots -->
+  <g fill="#FFD700" opacity="0.65">
+    <circle cx="108" cy="326" r="2.5"/>
+    <circle cx="136" cy="355" r="2"/>
+    <circle cx="492" cy="326" r="2.5"/>
+    <circle cx="464" cy="355" r="2"/>
+    <circle cx="148" cy="270" r="2.5"/>
+    <circle cx="452" cy="270" r="2.5"/>
+    <circle cx="170" cy="248" r="2"/>
+    <circle cx="430" cy="248" r="2"/>
+    <circle cx="236" cy="220" r="2.2"/>
+    <circle cx="364" cy="220" r="2.2"/>
+    <circle cx="252" cy="188" r="2"/>
+    <circle cx="348" cy="188" r="2"/>
+    <circle cx="278" cy="142" r="2.5"/>
+    <circle cx="322" cy="142" r="2.5"/>
+    <circle cx="300" cy="70" r="3.5"/>
+    <circle cx="288" cy="78" r="2"/>
+    <circle cx="312" cy="78" r="2"/>
+  </g>
+</svg>
